@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 
+// User Model
 const schemaUser = new mongoose.Schema({
   name: {
     type: String,
@@ -16,16 +17,12 @@ const schemaUser = new mongoose.Schema({
   passwordHash: {
     type: String
   },
-  posts: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'Post'}
-  ],
-  friends: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-  ],
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   description: String,
   profilePic: {
     type: String,
-    default: ""
+    default: ''
   },
   visitedCountries: [String],
   visitedCities: [String]
@@ -49,7 +46,7 @@ const schemaPost = new mongoose.Schema({
     updateAt: Date.now
   },
   location: {
-    type:{
+    type: {
       type: String,
       default: 'Point'
     },
@@ -73,7 +70,7 @@ const schemaPost = new mongoose.Schema({
     type: String,
     enum: ['Restaurant', 'Hotel', 'Bar', 'Museum']
   },
-  priceRange:{
+  priceRange: {
     type: String,
     enum: ['Cheap', 'Regular', 'Expensive']
   }
@@ -81,5 +78,3 @@ const schemaPost = new mongoose.Schema({
 
 module.exports = mongoose.model('User', schemaUser);
 module.exports = mongoose.model('Post', schemaPost);
-
-
