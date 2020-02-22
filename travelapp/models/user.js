@@ -1,5 +1,7 @@
 'use strict';
 
+const mongoose = require('mongoose');
+
 // User Model
 const schemaUser = new mongoose.Schema({
   name: {
@@ -26,4 +28,6 @@ const schemaUser = new mongoose.Schema({
   visitedCities: [String]
 });
 
-module.exports = mongoose.model('User', schemaUser);
+const User = mongoose.model('User', schemaUser);
+
+module.exports = User;

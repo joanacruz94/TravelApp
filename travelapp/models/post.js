@@ -3,11 +3,11 @@
 const mongoose = require('mongoose');
 
 const schemaPost = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     trim: true
   },
-  description: {
+  content: {
     type: String,
     required: true
   },
@@ -16,8 +16,14 @@ const schemaPost = new mongoose.Schema({
     required: true
   },
   timestamps: {
-    createAt: Date.now,
-    updateAt: Date.now
+    createAt: { 
+      type : Date, 
+      default: Date.now 
+    },
+    updateAt: { 
+      type : Date, 
+      default: Date.now 
+    }
   },
   location: {
     type: {
@@ -50,4 +56,8 @@ const schemaPost = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Post', schemaPost);
+const Post = mongoose.model('Post', schemaPost);
+
+module.exports = Post;
+
+

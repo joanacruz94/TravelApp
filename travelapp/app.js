@@ -15,6 +15,9 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const passportConfigure = require('./passport-configuration.js');
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const postRouter = require('./routes/post');
+const utilitiesRouter = require('./routes/utilities');
+const socialRouter = require('./routes/social');
 
 const app = express();
 
@@ -59,6 +62,9 @@ app.use(bindUserToViewLocals);
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/logged/post', postRouter);
+app.use('/logged/utilities', utilitiesRouter);
+app.use('/logges/social', socialRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
