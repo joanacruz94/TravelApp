@@ -1,1 +1,11 @@
 <h1>Edit info user</h1>
+
+<form action="">
+  <label for="input-description">Discription</label>
+  <input type="text-area" id="input-description" name="description" placeholder="Choose the discription of your post" />
+</form>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name">
+    <input type="file" name="photo">
+    <input type="submit" value="save">
+</form>

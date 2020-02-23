@@ -1,1 +1,24 @@
 <h1>Page edit post</h1>
+
+<form action="" method="POST">
+    <label for="input-title">Title</label>
+    <input type="text" id="input-title" name="title" placeholder="Choose a Title for your post" />
+    <label for="input-description">Discription</label>
+    <input type="text-area" id="input-description" name="description" placeholder="Choose the discription of your post" />
+  <select name="type" id="">
+    <option value="Restaurant">Restaurant</option>
+    <option value="Bar">Bar</option>
+    <option value="Hotel">Hotel</option>
+    <option value="Museum">Museum</option>
+  </select>
+  <select name="price-range" id="">
+    <option value="Cheap">Cheap</option>
+    <option value="Medium">Medium</option>
+    <option value="Expensive">Expensive</option>
+  </select>
+</form>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name">
+    <input type="file" name="photo">
+    <input type="submit" value="save">
+</form>
