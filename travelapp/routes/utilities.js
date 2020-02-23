@@ -2,7 +2,7 @@
 
 const { Router } = require('express');
 const router = new Router();
-
+ 
 router.get('/', (req, res, next) => {
     res.render('utilities/main');
 });
@@ -13,6 +13,11 @@ router.get('/recognition', (req, res, next) => {
 
 router.get('/translation', (req, res, next) => {
     res.render('utilities/translation');
+});
+
+router.post('/translation', (req, res, next) => {
+    const text = req.body.text;
+
 });
 
 module.exports = router;
