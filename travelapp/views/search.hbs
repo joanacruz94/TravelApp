@@ -1,4 +1,9 @@
 <h1>Page after logging in</h1>
-<span><strong>Name</strong>: {{user.name}}</span>
-<br />
-<span><strong>Email</strong>: {{user.email}}</span>
+<form action="" method="GET">
+    <input type="text" id="input-search" name="search" placeholder="Search for city or countrie"/>
+    <input type="submit" value="Search">
+</form>
+{{#each posts}}
+    <a href="/logged/post/{{ _id }}">{{ title }}</a>
+    <img src={{ image }}>
+{{/each}}

@@ -3,6 +3,7 @@
 const { Router } = require('express');
 const router = new Router();
 const Post = require('./../models/post');
+const User = require('./../models/user');
 const uploadCloud = require('../cloudinary-config.js');
 
 router.get('/create', (req, res, next) => {
@@ -35,7 +36,13 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
         }
     })
     .then((post) => {
-        res.redirect('/logged')
+        User.findByIdAndUpdate(req.user._id, { $push: { visitedCountries: post.countrie , visitedCities: post.city} })
+        .then((user) => {
+            res.redirect('/logged');
+        })
+        .catch((error) => {
+            next(error);
+        });
     })
     .catch((error) => {
         next(error);
