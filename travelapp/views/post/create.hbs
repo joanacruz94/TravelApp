@@ -1,26 +1,54 @@
 
 <h1>Page create post</h1>
-
-
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     <label for="input-title">Title</label>
     <input type="text" id="input-title" name="title" placeholder="Choose a Title for your post" />
     <label for="input-description">Discription</label>
     <input type="text-area" id="input-description" name="description" placeholder="Choose the discription of your post" />
-  <select name="type" id="">
+  <select name="type" id="input-type">
     <option value="Restaurant">Restaurant</option>
     <option value="Bar">Bar</option>
     <option value="Hotel">Hotel</option>
     <option value="Museum">Museum</option>
   </select>
-  <select name="price-range" id="">
+  <select name="priceRange" id="input-price">
     <option value="Cheap">Cheap</option>
     <option value="Medium">Medium</option>
     <option value="Expensive">Expensive</option>
   </select>
+  <input type="number" step=0.0000001 name="lat" id="lat">
+  <input type="number" step=0.0000001 name="lng" id="lng">
+  <input type="file" name="photo">
+  <input type="submit" value="Upload" id="upload-button">
 </form>
-<form action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="text" name="name">
-    <input type="file" name="photo">
-    <input type="submit" value="save">
-</form>
+  <script>
+    const $lat = document.getElementById("lat")
+    const $lng = document.getElementById("lng")
+
+    const localUser = () =>{
+      return new Promise ((resolve,reject) =>{
+         const sucessHandler = position => {
+          const data = {
+            lat: position.coords.latitude, 
+            lng: position.coords.longitude,
+          };
+          resolve(data);
+        };
+        const errorHandler = error => {
+          reject(error);
+        };
+        navigator.geolocation.getCurrentPosition(sucessHandler, errorHandler);
+      });
+    }
+
+    localUser()
+      .then(value => {
+        console.log("im running")
+        $lat.value = value.lat
+        $lng.value = value.lng  
+      })
+      .catch(error => {
+        console.log(error);
+      });
+   
+  </script>

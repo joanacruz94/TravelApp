@@ -30,13 +30,13 @@ const schemaPost = new mongoose.Schema({
       type: String,
       default: 'Point'
     },
-    coordinates: {
-      type: Number,
-      min: -180,
-      max: 180,
-      lat: 0,
-      lng: 0
-    }
+    coordinates: [
+      {
+        type: Number,
+        min: -180,
+        max: 180
+      }
+    ]
   },
   city: {
     type: String,
@@ -53,7 +53,7 @@ const schemaPost = new mongoose.Schema({
   },
   priceRange: {
     type: String,
-    enum: ['Cheap', 'Regular', 'Expensive']
+    enum: ['Cheap', 'Medium', 'Expensive']
   }
 });
 
