@@ -48,24 +48,37 @@ router.get('/profile/:id', (req, res, next) => {
       .catch(error => {
         next(error);
       });
-  });
+});
 
-router.get('/friends', (req, res, next) => {
+router.get('/profile/:id/addFriend', (req, res, next) => {
     const userOne = req.user._id;
-    const userTwo = 0;
+    const userTwo = req.params.id;
+
     const data = {
         userOne,
         userTwo
     };
+
     UserFriend.create(data)
     .then(() => {
-
+        res.redirect('user/profile');
     })
     .catch((error) => {
+        next(error);
+    });
+});
 
+router.get('/friends', (req, res, next) => {
+    const userOne = req.user._id;
+
+    UserFriend.find({ userOne })
+    .then(() => {
+        res.render('user/friends');
+    })
+    .catch((error) => {
+        next(error);
     });
 
-  //res.render('user/friends');
 });
 
 router.get('/update', (req, res, next) => {

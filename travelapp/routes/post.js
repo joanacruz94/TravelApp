@@ -7,7 +7,6 @@ const User = require('./../models/user');
 const uploadCloud = require('../cloudinary-config.js');
 
 router.get('/create', (req, res, next) => {
-
     res.render('post/create');
 });
 
@@ -49,14 +48,15 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
     });
 });
 
-router.get('/:id/update', (req, res, next) => {
-    res.render('post/edit');
-});
-
-router.post('/:id/update', (req, res, next) => {
-});
-
 router.post('/:id/delete', (req, res, next) => {
+    const idPost = req.params.id;
+    Post.findByIdAndDelete(idPost)
+    .then((post) => {
+        res.redirect('/logged');
+    })
+    .catch((error) => {
+        next(error);
+    });
 });
 
 router.get('/:id', (req, res, next) => {
