@@ -2,14 +2,19 @@
 <p>{{ user.name }}</p>
 
 <p>{{ user.description }}</p>
-<img src={{ user.profilePic }}>
+<img class="user-post" src={{ user.profilePic }}>
 
 <a href="/logged/social/update">Settings</a>
 <a href="/logged/social/map">Map</a>
 <a href="user/friends">Friends</a>
 
+<br>
+
 {{#each posts}}
     <a href="/logged/post/{{ _id }}">{{ title }}</a>
-    <img src={{ image }}>
+    <img class="user-post" src={{ image }}>
 {{/each}}
 
+{{#if notUser}}
+    <button>Add Friend</button>
+{{/if}}

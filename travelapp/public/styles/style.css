@@ -62,4 +62,8 @@ textarea {
   min-height: 8em;
   resize: vertical; }
 
+.user-post {
+  width: 100px;
+  height: 80px; }
+
 /*# sourceMappingURL=style.css.map */

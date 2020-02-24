@@ -4,16 +4,19 @@ const { Router } = require('express');
 const router = new Router();
 const Post = require('./../models/post');
 const User = require('./../models/user');
+const UserFriend = require('./../models/userFriend');
 const uploadCloud = require('../cloudinary-config.js');
 
 router.get('/profile', (req, res, next) => {
   const user = req.user;
+  const notUser = false;
 
   Post.find({ postedBy: user._id })
     .then(posts => {
       const data = {
         posts,
-        user
+        user,
+        notUser
       };
       res.render('user/profile', data);
     })
@@ -22,8 +25,47 @@ router.get('/profile', (req, res, next) => {
     });
 });
 
+router.get('/profile/:id', (req, res, next) => {
+    const _id = req.params.id;
+    const notUser = req.user._id === _id;
+
+    User.findOne({ _id })
+      .then(user => {
+        Post.find({ postedBy: user._id })
+        .then(posts => {
+            console.log(user);
+          const data = {
+            posts,
+            user,
+            notUser
+          };
+          res.render('user/profile', data);
+        })
+        .catch(error => {
+          next(error);
+        });
+      })
+      .catch(error => {
+        next(error);
+      });
+  });
+
 router.get('/friends', (req, res, next) => {
-  res.render('user/friends');
+    const userOne = req.user._id;
+    const userTwo = 0;
+    const data = {
+        userOne,
+        userTwo
+    };
+    UserFriend.create(data)
+    .then(() => {
+
+    })
+    .catch((error) => {
+
+    });
+
+  //res.render('user/friends');
 });
 
 router.get('/update', (req, res, next) => {

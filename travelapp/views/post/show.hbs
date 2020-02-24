@@ -1,8 +1,8 @@
 <h1>Page show post</h1>
  
  <p>Title: {{ post.title }}</p>
- <p>Discription : {{post.content}}</p>
- <p>Type: {{post.typePost}}</p>
- <p>Price Range: {{post.priceRange}}</p>
-
+ <p>Discription : {{ post.content }}</p>
+ <p>Type: {{ post.typePost }}</p>
+ <p>Price Range: {{ post.priceRange }}</p>
+ <a href="/logged/social/profile/{{ post.postedBy }}"> Posted By: </a>
  <img src={{post.image}}>
