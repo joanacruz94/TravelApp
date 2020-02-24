@@ -1,43 +1,55 @@
 <style>
   #sample-map {
 
-    width: 100%;
-    height: 100%;
+    width: 55vw;
+    height: 75vh;
   }
 </style>
 <h1>Page showing map</h1>
 <div id='sample-map'></div>
 <script>
   const $sampleMap = document.getElementById('sample-map');
+  
   const list = [
-    {{#each data}}
-        {
-          position: {
-            lat: {{ lat }},
-            lng: {{ lng }}
-          }
+    {{#each posts}}
+      {
+        id: "{{_id}}",
+        position: {
+          lat: {{ location.coordinates.[0] }},
+          lng: {{ location.coordinates.[1] }}
         },
+        title: "{{title}}"
+      },
     {{/each}}
   ];
+
+
+  const markers = [];
+
   function initMap() {
     const map = new window.google.maps.Map($sampleMap, {
       center: { lat: 38, lng: -9},
-      zoom : 9
+      zoom : 2
     });
-    map.addListener('click', event => {
-      const latitude = event.latLng.lat();
-      const longitude = event.latLng.lng();
-      //const $inputLatitude = document.getElementById('input-latitude');
-      //const $inputLongitude = document.getElementById('input-longitude');
-      $inputLatitude.value = latitude;
-      $inputLongitude.value = longitude;
-    })
+
     for (place of list) {
+      console.log(place);
       const marker = new window.google.maps.Marker({
         position: place.position,
         map
       });
+      markers.push(marker);
     }
+    
+    markers.map((marker, index) => {
+      marker.addListener(('click'), () => {
+          const infoWindow = new window.google.maps.InfoWindow({
+            content: '<a href="/logged/post/' + list[index].id + '">' + list[index].title + '</a>'
+          });
+          infoWindow.open(map, marker);
+      });
+      }
+    )
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap"></script>

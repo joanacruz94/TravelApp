@@ -37,11 +37,25 @@ router.get('/map', (req, res, next) => {
 
   Post.find({ postedBy: user._id })
     .then(posts => {
-      const data = [];
-      posts.map(value =>
-        data.push({ lat: value.location.coordinates[0], lng: value.location.coordinates[1] })
+      /*const locations = [];
+      const titles = [];
+      const ids = [];
+
+      posts.map(value => {
+        locations.push({ lat: value.location.coordinates[0], lng: value.location.coordinates[1] });
+        titles.push({ title: value.title });
+        ids.push({ _id: value._id });
+        }
       );
-      res.render('user/map', { data });
+
+      const data = {
+        locations,
+        titles,
+        ids
+      };*/
+
+      const data = { posts };
+      res.render('user/map', data);
     })
     .catch(error => {
       next(error);
