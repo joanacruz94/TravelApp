@@ -5,6 +5,8 @@ const { Router } = require('express');
 const passport = require('passport');
 
 const router = new Router();
+const uploadCloud = require('../cloudinary-config.js');
+
 
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
@@ -12,6 +14,7 @@ router.get('/sign-up', (req, res, next) => {
 
 router.post(
   '/sign-up',
+  uploadCloud.single('photo'),
   passport.authenticate('local-sign-up', {
     successRedirect: '/logged',
     failureRedirect: '/sign-up'

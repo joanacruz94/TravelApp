@@ -28,6 +28,8 @@ passport.use(
       passReqToCallback: true
     },
     (req, email, password, callback) => {
+      const description = req.body.discription;
+      const profilePic =  req.file.secure_url;
       const name = req.body.name;
       bcryptjs
         .hash(password, 10)
@@ -35,6 +37,8 @@ passport.use(
           return User.create({
             name,
             email,
+            description,
+            profilePic,
             passwordHash: hash
           });
         })

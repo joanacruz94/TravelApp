@@ -1,10 +1,10 @@
-<form action="/authentication/sign-up" method="POST">
-  <label for="input-name">Name</label>
-  <input type="text" id="input-name" name="name" placeholder="Your Name" />
-  <label for="input-email">Email</label>
+<form action="/authentication/sign-up" method="POST" enctype="multipart/form-data">
   <input type="email" id="input-email" name="email" placeholder="Your Email" />
   <label for="input-password">Password</label>
   <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
-  <button>Sign Up</button>
+  <label for="discription">Discription</label>
+  <input type="text-area" name="discription" id="discription" placeholder="Say some thing about you.">
+   <input type="file" name="photo">
+  <input type="submit" value="sign-up" id="upload-button">
 </form>
-<a href="/authentication/sign-up">Sign Up with GitHub</a>
+<a href="/authentication/sign-up">Sign Up with Friend's Trip</a>
