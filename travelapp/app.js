@@ -64,7 +64,7 @@ app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/logged/post', postRouter);
 app.use('/logged/utilities', utilitiesRouter);
-app.use('/logges/social', socialRouter);
+app.use('/logged/social', socialRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

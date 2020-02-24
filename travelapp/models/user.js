@@ -17,8 +17,6 @@ const schemaUser = new mongoose.Schema({
   passwordHash: {
     type: String
   },
-  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   description: String,
   profilePic: {
     type: String,

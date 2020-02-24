@@ -11,7 +11,9 @@
     <nav>
       <a href="/">Home</a>
       {{#if user}}
-        <!-- <a href="/">{{user.name}}'s Profile</a> -->
+        <a href="/logged/post/create">Create</a>
+        <a href="/logged/utilities">Utilities</a>
+        <a href="/logged/social/profile">{{user.name}}'s Profile</a>
         <form action="/authentication/sign-out" method="POST">
           <button>Sign Out</button>
         </form>
