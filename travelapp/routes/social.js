@@ -3,6 +3,8 @@
 const { Router } = require('express');
 const router = new Router();
 const Post = require('./../models/post');
+const User = require('./../models/user');
+const uploadCloud = require('../cloudinary-config.js');
 
 router.get('/profile', (req, res, next) => {
   const user = req.user;
@@ -25,11 +27,21 @@ router.get('/friends', (req, res, next) => {
 });
 
 router.get('/update', (req, res, next) => {
-  res.render('user/edit');
+    const user = req.user;
+     res.render('user/edit', { user });
 });
 
-router.get('/update', (req, res, next) => {
-  res.render('user/map');
+router.post('/update', uploadCloud.single('photo'), (req, res, next) => {
+    const description = req.body.description;
+    const profilePic = req.file.secure_url;
+    User.findByIdAndUpdate(req.user._id, { description, profilePic })
+    .then((user) => {
+        console.log(user);
+        res.redirect('/logged/social/profile');
+    }) 
+    .catch((error) => {
+        next(error);
+    });
 });
 
 router.get('/map', (req, res, next) => {
@@ -37,23 +49,6 @@ router.get('/map', (req, res, next) => {
 
   Post.find({ postedBy: user._id })
     .then(posts => {
-      /*const locations = [];
-      const titles = [];
-      const ids = [];
-
-      posts.map(value => {
-        locations.push({ lat: value.location.coordinates[0], lng: value.location.coordinates[1] });
-        titles.push({ title: value.title });
-        ids.push({ _id: value._id });
-        }
-      );
-
-      const data = {
-        locations,
-        titles,
-        ids
-      };*/
-
       const data = { posts };
       res.render('user/map', data);
     })
