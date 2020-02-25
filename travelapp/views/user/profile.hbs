@@ -1,18 +1,19 @@
 <h1>User Profile</h1>
 <p>{{ user.name }}</p>
 
-<div class="container-fluid text-center"> 
-    <p>{{ user.name }}</p>  
-    <img class="profile-foto rounded-circle" src={{ user.profilePic }}>+
-    <div class=" btn-profile container-fluid">
+<div class="d-flex flex-row bd-highlight mb-3">
+  <div class="p-2 bd-highlight">
+      <p>{{ user.name }}</p>  
+      <img class="profile-foto rounded-circle" src={{ user.profilePic }}>+
         <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>        
         <a href="/logged/social/map"><button class="btn btn-outline-secondary">Map</button></a>
         <a href="user/friends"><button class="btn btn-outline-secondary">Friends</button></a>    
-    </div>
+  </div>
+  <div class="p-2 bd-highlight">
+      <h4 class="align-middle">{{ user.description }}</h4>
+  </div>
+  
 </div>
-
-<p>{{ user.description }}</p>
-
 
 {{#each posts}}
     <a href="/logged/post/{{ _id }}">{{ title }}</a>
@@ -22,3 +23,5 @@
 {{#if showButton}}
     <a href="/logged/social/profile/{{ _idOther }}/addFriend">Add Friend</a>
 {{/if}}
+
+
