@@ -31,7 +31,7 @@ passport.use(
     },
     (req, email, password, callback) => {
       const description = req.body.discription;
-      const profilePic =  req.file.secure_url;
+      const profilePic = req.file.secure_url;
       const name = req.body.name;
       bcryptjs
         .hash(password, 10)
@@ -77,6 +77,7 @@ passport.use(
       });
   })
 );
+<<<<<<< HEAD
 
 const googleStrategy = new PassportGoogleStrategy(
   {
@@ -114,3 +115,5 @@ const googleStrategy = new PassportGoogleStrategy(
 );
 
 passport.use('google', googleStrategy);
+=======
+>>>>>>> c3db195883fb035e953aa9abc13f805fe6acba97
