@@ -42,7 +42,7 @@ const schemaPost = new mongoose.Schema({
     type: String,
     required: true
   },
-  postedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   countrie: {
     type: String,
     required: true

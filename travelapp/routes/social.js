@@ -27,7 +27,6 @@ router.get('/profile', (req, res, next) => {
 
 router.get('/profile/:id', (req, res, next) => {
   const _idOther = req.params.id;
-  console.log(_idOther);
   const myId = req.user._id;
   let showButton = true;
 
@@ -37,8 +36,8 @@ router.get('/profile/:id', (req, res, next) => {
       { userOne: myId, userTwo: _idOther }
     ]
   })
-    .then(() => {
-      showButton = false;
+    .then((exist) => {
+      if (exist.length !== 0) showButton = false;
     })
     .catch(error => {
       next(error);
@@ -46,7 +45,6 @@ router.get('/profile/:id', (req, res, next) => {
 
   User.findById(_idOther)
     .then(user => {
-      console.log(user);
       Post.find({ postedBy: user._id })
         .then(posts => {
           const data = {
@@ -77,7 +75,6 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
 
   UserFriend.create(data)
     .then(entrance => {
-      console.log(entrance);
       res.redirect('/logged');
     })
     .catch(error => {
@@ -86,15 +83,36 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
 });
 
 router.get('/friends', (req, res, next) => {
-  const userOne = req.user._id;
-
-  UserFriend.find({ userOne })
-    .then(() => {
-      res.render('user/friends');
-    })
-    .catch(error => {
-      next(error);
+  const myId = req.user._id;
+  let friends;
+  UserFriend.find({userOne: myId }
+  ).populate('userTwo')
+  .then(friendsInUserTwo=> {    
+    friends = friendsInUserTwo;
+    return UserFriend.find({userTwo: myId}).populate('userOne');
+  })
+  .then(friendsInUserOne => {
+    friends = friends.concat(friendsInUserOne);
+    const data = [];   
+    friends.map((value) => {
+      console.log(value);
+      if (Object.keys(value.userOne).length - 1 > 1) data.push({
+        email: value.userOne.email,
+        id: value.userOne._id
+      });
+      else data.push({
+        email: value.userTwo.email,
+        id: value.userTwo._id
+      });
     });
+    res.render('user/friends', { data });
+  })
+  //   //value.userOne === myId ? idSearch = value.userTwo : idSearch = value.userOne; 
+    
+  // })
+  .catch(error => {
+    next(error);
+  });
 });
 
 router.get('/update', (req, res, next) => {
@@ -107,7 +125,7 @@ router.post('/update', uploadCloud.single('photo'), (req, res, next) => {
   const profilePic = req.file.secure_url;
   User.findByIdAndUpdate(req.user._id, { description, profilePic })
     .then(user => {
-      console.log(user);
+
       res.redirect('/logged/social/profile');
     })
     .catch(error => {
