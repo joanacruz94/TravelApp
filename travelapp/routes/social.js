@@ -9,14 +9,14 @@ const uploadCloud = require('../cloudinary-config.js');
 
 router.get('/profile', (req, res, next) => {
   const user = req.user;
-  const notUser = false;
+  const showButton = false;
 
   Post.find({ postedBy: user._id })
     .then(posts => {
       const data = {
         posts,
         user,
-        notUser
+        showButton
       };
       res.render('user/profile', data);
     })
@@ -26,76 +26,92 @@ router.get('/profile', (req, res, next) => {
 });
 
 router.get('/profile/:id', (req, res, next) => {
-    const _id = req.params.id;
-    const notUser = req.user._id === _id;
+  const _idOther = req.params.id;
+  console.log(_idOther);
+  const myId = req.user._id;
+  let showButton = true;
 
-    User.findOne({ _id })
-      .then(user => {
-        Post.find({ postedBy: user._id })
+  UserFriend.find({
+    $or: [
+      { userOne: _idOther, userTwo: myId },
+      { userOne: myId, userTwo: _idOther }
+    ]
+  })
+    .then(() => {
+      showButton = false;
+    })
+    .catch(error => {
+      next(error);
+    });
+
+  User.findById(_idOther)
+    .then(user => {
+      console.log(user);
+      Post.find({ postedBy: user._id })
         .then(posts => {
-            console.log(user);
           const data = {
             posts,
             user,
-            notUser
+            showButton,
+            _idOther
           };
           res.render('user/profile', data);
         })
         .catch(error => {
           next(error);
         });
-      })
-      .catch(error => {
-        next(error);
-      });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 router.get('/profile/:id/addFriend', (req, res, next) => {
-    const userOne = req.user._id;
-    const userTwo = req.params.id;
+  const userOne = req.user._id;
+  const userTwo = req.params.id;
 
-    const data = {
-        userOne,
-        userTwo
-    };
+  const data = {
+    userOne,
+    userTwo
+  };
 
-    UserFriend.create(data)
-    .then(() => {
-        res.redirect('user/profile');
+  UserFriend.create(data)
+    .then(entrance => {
+      console.log(entrance);
+      res.redirect('/logged');
     })
-    .catch((error) => {
-        next(error);
+    .catch(error => {
+      next(error);
     });
 });
 
 router.get('/friends', (req, res, next) => {
-    const userOne = req.user._id;
+  const userOne = req.user._id;
 
-    UserFriend.find({ userOne })
+  UserFriend.find({ userOne })
     .then(() => {
-        res.render('user/friends');
+      res.render('user/friends');
     })
-    .catch((error) => {
-        next(error);
+    .catch(error => {
+      next(error);
     });
-
 });
 
 router.get('/update', (req, res, next) => {
-    const user = req.user;
-     res.render('user/edit', { user });
+  const user = req.user;
+  res.render('user/edit', { user });
 });
 
 router.post('/update', uploadCloud.single('photo'), (req, res, next) => {
-    const description = req.body.description;
-    const profilePic = req.file.secure_url;
-    User.findByIdAndUpdate(req.user._id, { description, profilePic })
-    .then((user) => {
-        console.log(user);
-        res.redirect('/logged/social/profile');
-    }) 
-    .catch((error) => {
-        next(error);
+  const description = req.body.description;
+  const profilePic = req.file.secure_url;
+  User.findByIdAndUpdate(req.user._id, { description, profilePic })
+    .then(user => {
+      console.log(user);
+      res.redirect('/logged/social/profile');
+    })
+    .catch(error => {
+      next(error);
     });
 });
 

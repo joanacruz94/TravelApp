@@ -4,5 +4,9 @@
  <p>Discription : {{ post.content }}</p>
  <p>Type: {{ post.typePost }}</p>
  <p>Price Range: {{ post.priceRange }}</p>
- <a href="/logged/social/profile/{{ post.postedBy }}"> Posted By: </a>
+{{#if myPost}}
+  <a href="/logged/social/profile"> Posted By: </a>
+{{else}}
+  <a href="/logged/social/profile/{{ post.postedBy }}"> Posted By: </a>
+{{/if}}
  <img src={{post.image}}>

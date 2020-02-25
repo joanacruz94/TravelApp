@@ -15,6 +15,6 @@
     <img class="user-post" src={{ image }}>
 {{/each}}
 
-{{#if notUser}}
-    <button>Add Friend</button>
+{{#if showButton}}
+    <a href="/logged/social/profile/{{ _idOther }}/addFriend">Add Friend</a>
 {{/if}}
