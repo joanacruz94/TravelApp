@@ -54,7 +54,7 @@ router.post('/:id/delete', (req, res, next) => {
   const idPost = req.params.id;
   Post.findByIdAndDelete(idPost)
     .then(post => {
-      res.redirect('/logged');
+      res.redirect('/logged/social/profile');
     })
     .catch(error => {
       next(error);

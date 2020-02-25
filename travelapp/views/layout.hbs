@@ -10,21 +10,20 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Friend's Trip</a>
+    <nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a id="friendtrip" class="navbar-brand" href="/logged">Friend's Trip</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      <a id="navhome" class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
       {{#if user}}
-      <a class="nav-item nav-link" href="/logged/post/create">Create</a>
-      <a class="nav-item nav-link" href="/logged/utilities">Utilities</a>
-      <a class="nav-item nav-link" href="/logged/social/profile">{{user.name}}'s Profile</a>
-      <form action="/authentication/sign-out" method="POST">
-          <button class="navbar-toggler" type="button">Sign Out</button>
-      </form>
+      <a id="navcreate" class="nav-item nav-link" href="/logged/post/create">Create</a>
+      <a id="navutilities" class="nav-item nav-link" href="/logged/utilities">Utilities</a>
+      <a id="navprofile" class="nav-item nav-link" href="/logged/social/profile">{{user.name}}'s Profile</a>
+      <a id="navsignout" class="nav-item nav-link" href="/">Sign Out</a>
+
       {{else}}
       <a class="nav-item nav-link" href="/authentication/sign-in">Sign In</a>
       <a class="nav-item nav-link" href="/authentication/sign-up">Sign Up</a>
