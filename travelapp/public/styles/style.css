@@ -1,30 +1,9 @@
 *, *:before, *:after {
   box-sizing: border-box; }
 
-body {
-  max-width: 52em;
-  padding: 0 1em;
-  margin: 0 auto;
-  font-family: sans-serif;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 2; }
-
 a {
   color: inherit;
   text-decoration: none; }
-
-nav {
-  display: flex; }
-  nav a,
-  nav button {
-    padding: 1em 0;
-    border: 0; }
-    nav a:not(:last-child),
-    nav button:not(:last-child) {
-      margin-right: 1em; }
-    nav a:first-child,
-    nav button:first-child {
-      margin-right: auto; }
 
 h1,
 h2,
@@ -42,28 +21,17 @@ img {
   width: 100%;
   max-width: 100%; }
 
-form {
-  display: flex;
-  flex-direction: column; }
-
-input,
-textarea,
-button,
-.btn {
-  padding: 1em;
-  border: 1px solid rgba(191, 191, 191, 0.5);
-  border-radius: 0;
-  margin-bottom: 1em;
-  font: inherit;
-  color: inherit;
-  background-color: transparent; }
-
 textarea {
   min-height: 8em;
   resize: vertical; }
 
+.profile-foto {
+  width: 250px;
+  height: 220px; }
+
 .user-post {
-  width: 100px;
-  height: 80px; }
+  width: 600px;
+  height: 550px;
+  margin-left: 350px; }
 
 /*# sourceMappingURL=style.css.map */
