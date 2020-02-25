@@ -1,27 +1,43 @@
 <h1>User Profile</h1>
 <p>{{ user.name }}</p>
 
-<div class="d-flex flex-row bd-highlight mb-3">
+<div id="main-container" class="d-flex flex-row bd-highlight mb-3">
   <div class="p-2 bd-highlight">
       <p>{{ user.name }}</p>  
-      <img class="profile-foto rounded-circle" src={{ user.profilePic }}>+
-        <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>        
-        <a href="/logged/social/map"><button class="btn btn-outline-secondary">Map</button></a>
-        <a href="user/friends"><button class="btn btn-outline-secondary">Friends</button></a>    
+      <img class="profile-foto rounded-circle" src={{ user.profilePic }}>  
   </div>
-  <div class="p-2 bd-highlight">
-      <h4 class="align-middle">{{ user.description }}</h4>
+  <div id="btn-container" class="p-2 bd-highlight">
+      <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>        
+      <a href="/logged/social/map"><button class="btn btn-outline-secondary">Map</button></a>
+      <a href="user/friends"><button class="btn btn-outline-secondary">Friends</button></a>  
+  </div>
+  <div id="description-container" class="p-2 bd-highlight">
+      <p id="description" class="align-middle"> <strong>Profile Description:</strong> <br>{{ user.description }}</p>
   </div>
   
 </div>
+<div class="row row-cols-1 row-cols-md-3">
+        {{#each posts}} 
 
-{{#each posts}}
-    <a href="/logged/post/{{ _id }}">{{ title }}</a>
-    <img class="user-post align-middle" src={{ image }}>
-{{/each}}
+  <div class="col mb-4">
+    <div class="card">
+      <img src={{ image }} class="card-img-top user-post" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ title }}</h5>
+        <p class="card-text">{{ content }}</p>
+        <a href="/logged/post/{{ _id }}" class="btn btn-outline-secondary">Go to Post</a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
 
 {{#if showButton}}
     <a href="/logged/social/profile/{{ _idOther }}/addFriend">Add Friend</a>
 {{/if}}
 
 
+
+
+
+  

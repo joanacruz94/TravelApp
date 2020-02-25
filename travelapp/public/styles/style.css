@@ -37,8 +37,34 @@ textarea {
   height: 220px; }
 
 .user-post {
-  width: 600px;
-  height: 550px;
-  margin-left: 350px; }
+  height: 300px; }
+
+#btn-container {
+  margin-top: 200px; }
+
+#description {
+  font-size: 1.5em; }
+
+#nav-bar {
+  font-size: 1.3em; }
+
+#friendtrip {
+  margin-left: 40px;
+  font-size: 1.5em; }
+
+#navhome {
+  margin-left: 40px; }
+
+#navcreate {
+  margin-left: 40px; }
+
+#navutilities {
+  margin-left: 40px; }
+
+#navprofile {
+  margin-left: 40px; }
+
+#navsignout {
+  margin-left: 100px; }
 
 /*# sourceMappingURL=style.css.map */

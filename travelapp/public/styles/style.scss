@@ -1,6 +1,8 @@
 $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
-
+//* {
+//  background-color: #f2f2f2;
+//}
 * {
   &,
   &:before,
@@ -8,7 +10,7 @@ $grey: hsla(0, 0, 75%, 0.5);
     box-sizing: border-box;
   }
 }
-// ITS HERE THAT MAKES THE SMALLER PAGE
+
 body {
   padding: 0 1em;
   margin: 0 auto;
@@ -50,7 +52,46 @@ textarea {
   height: 220px;
 }
 .user-post {
-  width: 600px;
-  height: 550px;
-  margin-left: 350px;
+  height: 300px;
+}
+
+//profile css
+
+#btn-container {
+  margin-top: 200px;
+}
+
+#description {
+  font-size: 1.5em;
+}
+
+//nav bar
+
+#nav-bar {
+  font-size: 1.3em;
+}
+
+#friendtrip {
+  margin-left: 40px;
+  font-size: 1.5em;
+}
+
+#navhome {
+  margin-left: 40px;
+}
+
+#navcreate {
+  margin-left: 40px;
+}
+
+#navutilities {
+  margin-left: 40px;
+}
+
+#navprofile {
+  margin-left: 40px;
+}
+
+#navsignout {
+  margin-left: 100px;
 }

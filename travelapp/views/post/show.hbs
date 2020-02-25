@@ -5,7 +5,9 @@
  <p>Type: {{ post.typePost }}</p>
  <p>Price Range: {{ post.priceRange }}</p>
 {{#if myPost}}
-  <a href="/logged/social/profile"> Posted By: </a>
+<form action="/logged/post/{{ post._id }}/delete" method="POST">
+    <button class="btn btn-outline-secondary">Delect Post</button>
+</form>
 {{else}}
   <a href="/logged/social/profile/{{ post.postedBy }}"> Posted By: </a>
 {{/if}}
