@@ -5,6 +5,8 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('./models/user');
 const bcryptjs = require('bcryptjs');
+const passportGoogle = require('google');
+const PassportGoogleStrategy = passportGoogle.Strategy;
 
 passport.serializeUser((user, callback) => {
   callback(null, user._id);
@@ -75,3 +77,40 @@ passport.use(
       });
   })
 );
+
+const googleStrategy = new PassportGoogleStrategy(
+  {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:3000/authentication/google-callback',
+    scope: 'user:email'
+  },
+  (accessToken, refreshToken, profile, callback) => {
+    const data = {
+      name: profile.displayName,
+      googleId: profile.id,
+      googleUsername: profile.username,
+      email: profile.emails.find(object => object.primary).value,
+      photo: profile.photos.length ? profile.photos[0].value : undefined
+    };
+
+    User.findOne({
+      googleId: data.googleId
+    })
+      .then(user => {
+        if (user) {
+          return Promise.resolve(user);
+        } else {
+          return User.create(data);
+        }
+      })
+      .then(user => {
+        callback(null, user);
+      })
+      .catch(error => {
+        callback(error);
+      });
+  }
+);
+
+passport.use('github', googleStrategy);

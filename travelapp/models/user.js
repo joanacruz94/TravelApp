@@ -22,6 +22,12 @@ const schemaUser = new mongoose.Schema({
     type: String,
     default: ''
   },
+  googleId: {
+    type: String
+  },
+  googleUsername: {
+    type: String
+  },
   visitedCountries: [String],
   visitedCities: [String]
 });
