@@ -5,7 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('./models/user');
 const bcryptjs = require('bcryptjs');
-const passportGoogle = require('google');
+const passportGoogle = require('passport-google-oauth');
 const PassportGoogleStrategy = passportGoogle.Strategy;
 
 passport.serializeUser((user, callback) => {
@@ -113,4 +113,4 @@ const googleStrategy = new PassportGoogleStrategy(
   }
 );
 
-passport.use('github', googleStrategy);
+passport.use('google', googleStrategy);
