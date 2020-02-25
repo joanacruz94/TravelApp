@@ -1,57 +1,45 @@
 
 <h1>Page create post</h1>
-<form action="" method="POST" enctype="multipart/form-data">
+
+  
+  
+  <form method="POST" enctype="multipart/form-data">
+  <div class="form-group">
     <label for="input-title">Title</label>
-    <input type="text" id="input-title" name="title" placeholder="Choose a Title for your post" />
-    <label for="input-description">Discription</label>
-    <input type="text-area" id="input-description" name="description" placeholder="Choose the discription of your post" />
-  <select name="type" id="input-type">
-    <option value="Restaurant">Restaurant</option>
-    <option value="Bar">Bar</option>
-    <option value="Hotel">Hotel</option>
-    <option value="Museum">Museum</option>
+    <input type="text" class="form-control form-control-lg" id="input-title" placeholder="Choose a Title for your post">
+  </div>
+  <div class="form-group">
+    <label for="input-description">Description</label>
+    <textarea class="form-control form-control-lg" id="input-description" rows="4" placeholder="Post description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="type">Type of Post</label>
+    <select name="type" id="input-type" class="form-control form-control-lg">
+      <option value="Restaurant">Restaurant</option>
+      <option value="Bar">Bar</option>
+      <option value="Hotel">Hotel</option>
+      <option value="Museum">Museum</option>
+      <option value="Landscape">Landscape</option>
+      <option value="Beach">Beach</option>
+      <option value="City">City</option>
+      <option value="Other">Other</option>
   </select>
-  <select name="priceRange" id="input-price">
-    <option value="Cheap">Cheap</option>
-    <option value="Medium">Medium</option>
-    <option value="Expensive">Expensive</option>
+  </div>
+
+  <div class="form-group">
+    <label for="pricerange">Price Range</label>
+    <select name="priceRange" id="input-price" class="form-control form-control-lg">
+      <option value="Cheap">Cheap</option>
+      <option value="Medium">Medium</option>
+      <option value="Expensive">Expensive</option>
   </select>
+  </div>
   <input type="number" step=0.0000001 name="lat" id="lat">
   <input type="number" step=0.0000001 name="lng" id="lng">
-  <input type="file" name="photo">
-  <input type="submit" value="Upload" id="upload-button">
-</form>
+  <input class="btn btn-outline-secondary" type="file" name="photo">
+  <input class="btn btn-outline-secondary" type="submit" value="Upload" id="upload-button">
   
   
-  <form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
 </form>
   
   

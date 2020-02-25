@@ -31,7 +31,7 @@ passport.use(
     },
     (req, email, password, callback) => {
       const description = req.body.discription;
-      const profilePic =  req.file.secure_url;
+      const profilePic = req.file.secure_url;
       const name = req.body.name;
       bcryptjs
         .hash(password, 10)
@@ -77,40 +77,3 @@ passport.use(
       });
   })
 );
-
-const googleStrategy = new PassportGoogleStrategy(
-  {
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/authentication/google-callback',
-    scope: 'user:email'
-  },
-  (accessToken, refreshToken, profile, callback) => {
-    const data = {
-      name: profile.displayName,
-      googleId: profile.id,
-      googleUsername: profile.username,
-      email: profile.emails.find(object => object.primary).value,
-      photo: profile.photos.length ? profile.photos[0].value : undefined
-    };
-
-    User.findOne({
-      googleId: data.googleId
-    })
-      .then(user => {
-        if (user) {
-          return Promise.resolve(user);
-        } else {
-          return User.create(data);
-        }
-      })
-      .then(user => {
-        callback(null, user);
-      })
-      .catch(error => {
-        callback(error);
-      });
-  }
-);
-
-passport.use('github', googleStrategy);

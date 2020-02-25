@@ -25,6 +25,7 @@
     "express-session": "^1.17.0",
     "fs": "0.0.1-security",
     "geoip-lite": "^1.4.0",
+    "google": "^2.1.0",
     "google-translate-api": "^2.3.0",
     "gtts.js": "^1.0.1",
     "hbs": "^4.0.4",
