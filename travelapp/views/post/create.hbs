@@ -1,16 +1,13 @@
 
 <h1>Page create post</h1>
-
-  
-  
-  <form method="POST" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="input-title">Title</label>
-    <input type="text" class="form-control form-control-lg" id="input-title" placeholder="Choose a Title for your post">
+    <input type="text" name="title" class="form-control form-control-lg" id="input-title" placeholder="Choose a Title for your post">
   </div>
   <div class="form-group">
     <label for="input-description">Description</label>
-    <textarea class="form-control form-control-lg" id="input-description" rows="4" placeholder="Post description"></textarea>
+    <textarea class="form-control form-control-lg" name="description" id="input-description" rows="4" placeholder="Post description"></textarea>
   </div>
   <div class="form-group">
     <label for="type">Type of Post</label>
@@ -38,8 +35,6 @@
   <input type="number" step=0.0000001 name="lng" id="lng">
   <input class="btn btn-outline-secondary" type="file" name="photo">
   <input class="btn btn-outline-secondary" type="submit" value="Upload" id="upload-button">
-  
-  
 </form>
   
   

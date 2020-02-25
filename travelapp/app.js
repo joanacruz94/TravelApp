@@ -17,6 +17,7 @@ const authenticationRouter = require('./routes/authentication');
 const postRouter = require('./routes/post');
 const utilitiesRouter = require('./routes/utilities');
 const socialRouter = require('./routes/social');
+const passportConfigure = require('./passport-configuration.js');
 
 const app = express();
 

@@ -18,9 +18,6 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
   const lat = req.body.lat;
   const lng = req.body.lng;
 
-  console.log(lat);
-  console.log(lng);
-
   Post.create({
     title: title,
     content: description,

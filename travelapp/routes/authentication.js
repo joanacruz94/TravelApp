@@ -5,16 +5,6 @@ const passport = require('passport');
 const router = new Router();
 const uploadCloud = require('../cloudinary-config.js');
 
-router.get('/google', passport.authenticate('google'));
-
-router.get(
-  '/google-callback',
-  passport.authenticate('google', {
-    successRedirect: '/logged',
-    failureRedirect: '/sign-in'
-  })
-);
-
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
@@ -45,4 +35,14 @@ router.post('/sign-out', (req, res, next) => {
   res.redirect('/');
 });
 
+/*
+router.get('/google', passport.authenticate('google'));
+router.get(
+  '/google-callback',
+  passport.authenticate('google', {
+    successRedirect: '/logged',
+    failureRedirect: '/sign-in'
+  })
+);
+*/
 module.exports = router;

@@ -21,9 +21,10 @@
       {{#if user}}
       <a id="navcreate" class="nav-item nav-link" href="/logged/post/create">Create</a>
       <a id="navutilities" class="nav-item nav-link" href="/logged/utilities">Utilities</a>
-      <a id="navprofile" class="nav-item nav-link" href="/logged/social/profile">{{user.name}}'s Profile</a>
-      <a id="navsignout" class="nav-item nav-link" href="/">Sign Out</a>
-
+      <a id="navprofile" class="nav-item nav-link" href="/logged/social/profile">{{ user.name }}'s Profile</a>
+      <form action="/authentication/sign-out" method="POST">
+        <button type="submit" class="nav-item nav-link">Sign Out</button>
+      </form>
       {{else}}
       <a class="nav-item nav-link" href="/authentication/sign-in">Sign In</a>
       <a class="nav-item nav-link" href="/authentication/sign-up">Sign Up</a>
