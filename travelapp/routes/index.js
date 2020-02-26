@@ -15,6 +15,8 @@ router.get('/logged', routeGuard, (req, res, next) => {
   let searchO = {};
   if (search) searchO = { $or: [{ 'countrie' : search },{ 'city' : search }]};
 
+  console.log("SEARCH", search);
+
   console.log(searchO);
 
   Post.find(searchO)

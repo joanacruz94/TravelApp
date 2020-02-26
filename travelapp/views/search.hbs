@@ -1,23 +1,57 @@
 <form id="searchBar" class="form-inline active-cyan-3 active-cyan-4" method="GET">
   <i class="fas fa-search" aria-hidden="true"></i>
   <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-    aria-label="Search">
+    aria-label="Search" name="search" id="speech-text">
+  <img onclick="startDictation()" witdh="30" height="30" src="https://assets.dryicons.com/uploads/icon/svg/6122/bef13daa-e9a2-4855-9552-5a274a59f119.svg"/>
+  <button class="btn btn-outline-secondary">Search</button>
 </form>
 
 
-    {{#each posts}}
+{{#each posts}}
 <div class="card-deck div-container">
   <div id="feedCard" class="card">
     <img id="postImg" class="card-img-top post-foto" src={{ image }} alt="Card image cap">
     <div class="card-body">
-      <a  class="card-title" href="/logged/post/{{ _id }}">{{ title }}</a>
-      
-      <p class="card-text">Description: {{ content }}</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-   </div>
+    <a  class="card-title" href="/logged/post/{{ _id }}">{{ title }}</a>
+    <p class="card-text">Description: {{ content }}</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
-    {{/each}}
+  </div>
+</div>
+{{/each}}
+
+
+<script>
+
+    let lang = "en-GB";
+          
+    function startDictation() {
+
+        if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+        var recognition = new webkitSpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+    
+        recognition.lang = "en-GB";
+        recognition.start();
+
+        recognition.onresult = function(e) {            
+            const $speechT = document.getElementById("speech-text");
+            $speechT.value = e.results[0][0].transcript;
+
+            recognition.stop();
+        };
+
+        recognition.onerror = function(e) {
+            recognition.stop();
+        }
+
+        }
+    }
+</script>
+
 
     
     
