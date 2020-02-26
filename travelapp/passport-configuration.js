@@ -5,8 +5,8 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('./models/user');
 const bcryptjs = require('bcryptjs');
-const passportGoogle = require('passport-google-oauth');
-const PassportGoogleStrategy = passportGoogle.Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 
 passport.serializeUser((user, callback) => {
   callback(null, user._id);
@@ -78,31 +78,25 @@ passport.use(
   })
 );
 
-/*
-const googleStrategy = new PassportGoogleStrategy(
+
+passport.use(new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/authentication/google-callback',
-    scope: 'user:email'
+    callbackURL: "http://localhost:3000/authentication/google-callback"
   },
   (accessToken, refreshToken, profile, callback) => {
-    const data = {
-      name: profile.displayName,
-      googleId: profile.id,
-      googleUsername: profile.username,
-      email: profile.emails.find(object => object.primary).value,
-      photo: profile.photos.length ? profile.photos[0].value : undefined
-    };
-
     User.findOne({
-      googleId: data.googleId
+      googleId: profile.id
     })
       .then(user => {
         if (user) {
           return Promise.resolve(user);
         } else {
-          return User.create(data);
+          return User.create({
+            googleId: profile.id,
+            name: profile.displayName,
+            profilePic: profile.photos[0].value});
         }
       })
       .then(user => {
@@ -111,8 +105,7 @@ const googleStrategy = new PassportGoogleStrategy(
       .catch(error => {
         callback(error);
       });
-  }
-);
+}
+));
 
-passport.use('google', googleStrategy);
-*/
+

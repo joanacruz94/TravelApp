@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate')
 
 // User Model
 const schemaUser = new mongoose.Schema({
@@ -10,7 +11,6 @@ const schemaUser = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
     lowercase: true,
     trim: true
   },
@@ -25,13 +25,11 @@ const schemaUser = new mongoose.Schema({
   googleId: {
     type: String
   },
-  googleUsername: {
-    type: String
-  },
   visitedCountries: [String],
   visitedCities: [String]
 });
 
+schemaUser.plugin(findOrCreate);
 const User = mongoose.model('User', schemaUser);
 
 module.exports = User;
