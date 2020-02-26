@@ -6,7 +6,9 @@
       <img class="profile-foto rounded-circle" src={{ user.profilePic }}>  
   </div>
   <div id="btn-container" class="p-2 bd-highlight">
-      <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>        
+      {{#if userProf}}
+      <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>
+      {{/if}}        
       <a href="/logged/social/map"><button class="btn btn-outline-secondary">Map</button></a>
       <a href="user/friends"><button class="btn btn-outline-secondary">Friends</button></a>  
   </div>
