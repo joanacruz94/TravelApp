@@ -17,6 +17,8 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
   const price = req.body.priceRange;
   const lat = req.body.lat;
   const lng = req.body.lng;
+  const countrie = req.body.countrie;
+  const city = req.body.city;
 
   Post.create({
     title: title,
@@ -25,8 +27,8 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
     typePost: type,
     priceRange: price,
     postedBy: req.user._id,
-    countrie: 'Portugal',
-    city: 'Braga',
+    countrie: countrie,
+    city: city,
     location: {
       coordinates: [lat, lng]
     }
