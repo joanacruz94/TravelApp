@@ -29,6 +29,7 @@
     "google": "^2.1.0",
     "google-translate-api": "^2.3.0",
     "gtts.js": "^1.0.1",
+    "handlebars-helpers": "^0.10.0",
     "hbs": "^4.0.4",
     "http-errors": "^1.7.3",
     "iplocation": "^6.1.0",

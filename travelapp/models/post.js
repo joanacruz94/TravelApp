@@ -16,13 +16,13 @@ const schemaPost = new mongoose.Schema({
     required: true
   },
   timestamps: {
-    createAt: { 
-      type : Date, 
-      default: Date.now 
+    createAt: {
+      type: Date,
+      default: Date.now
     },
-    updateAt: { 
-      type : Date, 
-      default: Date.now 
+    updateAt: {
+      type: Date,
+      default: Date.now
     }
   },
   location: {
@@ -49,7 +49,7 @@ const schemaPost = new mongoose.Schema({
   },
   typePost: {
     type: String,
-    enum: ['Restaurant', 'Hotel', 'Bar', 'Museum']
+    enum: ['Restaurant', 'Hotel', 'Bar', 'Museum', 'Landscape', 'Beach', 'City', 'Other']
   },
   priceRange: {
     type: String,
@@ -60,5 +60,3 @@ const schemaPost = new mongoose.Schema({
 const Post = mongoose.model('Post', schemaPost);
 
 module.exports = Post;
-
-
