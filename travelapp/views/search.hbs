@@ -6,6 +6,7 @@
   <button class="btn btn-outline-secondary">Search</button>
 </form>
 
+<input id="hidden" value={{ userName }}></input>
 
 {{#each posts}}
 <div class="card-deck div-container">
@@ -50,6 +51,14 @@
 
         }
     }
+</script>
+
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=qNPkUHT3"></script>
+<script>
+    const nameUser = document.getElementById('hidden').value;
+    document.addEventListener('DOMContentLoaded', () => { 
+        responsiveVoice.speak(`Hello ${nameUser}! Welcome to friends trip, have a nice experience`); 
+    });
 </script>
 
 

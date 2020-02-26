@@ -13,15 +13,11 @@ router.get('/logged', routeGuard, (req, res, next) => {
   const search = req.query.search;
   console.log(search);
   let searchO = {};
+  const userName = req.user.name;
   if (search) searchO = { $or: [{ 'countrie' : search },{ 'city' : search }]};
-
-  console.log("SEARCH", search);
-
-  console.log(searchO);
-
   Post.find(searchO)
   .then((posts) =>{
-    const data = { posts };
+    const data = { posts, userName };
     res.render('search', data);
   })
   .catch((error) => {

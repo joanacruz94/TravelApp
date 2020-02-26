@@ -8,12 +8,12 @@ const projectId = 'geoproject-268614';
 const location = 'global';
 const text = 'Hello World';
 
+var CountryLanguage = require('country-language');
 
 // Instantiates a client
 const translationClient = new TranslationServiceClient();
 async function translateText() {
 
-    console.log('IM HEREEEEEE');
   // Construct request
   const request = {
     parent: `projects/${projectId}/locations/${location}`,
@@ -51,7 +51,16 @@ router.get('/recognition', (req, res, next) => {
 });
 
 router.get('/translation', (req, res, next) => {
-    translateText();
+    //translateText();
+
+    CountryLanguage.getCountry('GB', function (err, country) {
+      if (err) {
+        console.log(err);
+      } else {
+        var languagesInGB = country.languages;
+        console.log(languagesInGB[0].iso639_1);
+      }
+    });
 
     res.render('utilities/translation');
 });

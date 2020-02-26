@@ -99,7 +99,6 @@ router.get('/friends', (req, res, next) => {
       friends = friends.concat(friendsInUserOne);
       const data = [];
       friends.map(value => {
-        console.log(value);
         if (Object.keys(value.userOne).length - 1 > 1)
           data.push({
             email: value.userOne.email,
