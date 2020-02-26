@@ -39,13 +39,27 @@ textarea {
   height: 220px; }
 
 .user-post {
-  height: 300px; }
+  height: 250px; }
 
 .createPost {
   margin-bottom: 50px; }
 
 #labelSize {
   font-size: 1.4em; }
+
+#hidden {
+  visibility: hidden; }
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block; }
+
+.upload-btn-wrapper input[type='file'] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0; }
 
 #btn-container {
   margin-top: 200px; }
@@ -75,6 +89,10 @@ textarea {
 #navsignout {
   margin-left: 250px;
   margin-top: 10px; }
+
+#signIn {
+  margin-left: 700px;
+  margin-right: 30px; }
 
 .div-container {
   display: flex;
@@ -126,7 +144,7 @@ header .overlay {
   height: 100%;
   width: 100%;
   background-color: black;
-  opacity: 0.5;
+  opacity: 0.3;
   z-index: 1; }
 
 @media (pointer: coarse) and (hover: none) {
@@ -144,7 +162,8 @@ header .overlay {
   margin-top: 5px; }
 
 .container {
-  margin-top: 70px; }
+  margin-top: 50px;
+  margin-bottom: 50px; }
 
 a {
   text-decoration: none !important; }
@@ -205,7 +224,8 @@ a {
 form .error {
   color: #ff0000; }
 
-#second {
-  display: none; }
+.showMap {
+  color: gray("100");
+  background-color: theme-color("dark"); }
 
 /*# sourceMappingURL=style.css.map */
