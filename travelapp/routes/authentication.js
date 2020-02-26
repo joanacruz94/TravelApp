@@ -42,16 +42,6 @@ router.get('/google-callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     res.redirect('/logged');
-  });
-
-// router.get('/google', passport.authenticate('google'));
-
-// router.get(
-//   '/google-callback',
-//   passport.authenticate('google', {
-//     successRedirect: '/logged',
-//     failureRedirect: '/sign-in'
-//   })
-// );
+});
 
 module.exports = router;
