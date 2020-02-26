@@ -1,14 +1,17 @@
-<h1>Page show post</h1>
- 
- <p>Title: {{ post.title }}</p>
- <p>Discription : {{ post.content }}</p>
- <p>Type: {{ post.typePost }}</p>
- <p>Price Range: {{ post.priceRange }}</p>
-{{#if myPost}}
-<form action="/logged/post/{{ post._id }}/delete" method="POST">
-    <button class="btn btn-outline-secondary">Delect Post</button>
+<div id="showCard" class="card" style="width: 45rem;">
+  <img class="card-img-top" src={{post.image}} alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.content }}</p>
+    <p class="card-text">Type: {{ post.typePost }}</p>
+    <p class="card-text">Price range: {{ post.priceRange }}</p>
+    <a href="/logged/social/profile" class="btn btn-outline-secondary">Go back</a>
+    {{#if myPost}}
+    <form action="/logged/post/{{ post._id }}/delete" method="POST">
+    <button id="deleteBtn" class="btn btn-outline-secondary">Delete Post</button>
+    {{else}}
 </form>
-{{else}}
-  <a href="/logged/social/profile/{{ post.postedBy }}"> Posted By: </a>
-{{/if}}
- <img src={{post.image}}>
+<a href="/logged/social/profile/{{ post.postedBy }}"> Posted By: {{  }} </a>
+  </div>
+  {{/if}}
+</div>

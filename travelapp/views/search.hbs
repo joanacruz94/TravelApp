@@ -1,9 +1,23 @@
-<h1>Page after logging in</h1>
-<form action="" method="GET">
-    <input type="text" id="input-search" name="search" placeholder="Search for city or countrie"/>
-    <input type="submit" value="Search">
+<form id="searchBar" class="form-inline active-cyan-3 active-cyan-4" method="GET">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+    aria-label="Search">
 </form>
-{{#each posts}}
-    <a href="/logged/post/{{ _id }}">{{ title }}</a>
-    <img src={{ image }}>
-{{/each}}
+
+
+    {{#each posts}}
+<div class="card-deck div-container">
+  <div id="feedCard" class="card">
+    <img id="postImg" class="card-img-top post-foto" src={{ image }} alt="Card image cap">
+    <div class="card-body">
+      <a  class="card-title" href="/logged/post/{{ _id }}">{{ title }}</a>
+      
+      <p class="card-text">Description: {{ content }}</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+   </div>
+  </div>
+    {{/each}}
+
+    
+    

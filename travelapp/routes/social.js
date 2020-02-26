@@ -10,13 +10,15 @@ const uploadCloud = require('../cloudinary-config.js');
 router.get('/profile', (req, res, next) => {
   const user = req.user;
   const showButton = false;
+  const userProf = true;
 
   Post.find({ postedBy: user._id })
     .then(posts => {
       const data = {
         posts,
         user,
-        showButton
+        showButton,
+        userProf
       };
       res.render('user/profile', data);
     })
@@ -29,6 +31,7 @@ router.get('/profile/:id', (req, res, next) => {
   const _idOther = req.params.id;
   const myId = req.user._id;
   let showButton = true;
+  const userProf = false;
 
   UserFriend.find({
     $or: [
@@ -36,7 +39,7 @@ router.get('/profile/:id', (req, res, next) => {
       { userOne: myId, userTwo: _idOther }
     ]
   })
-    .then((exist) => {
+    .then(exist => {
       if (exist.length !== 0) showButton = false;
     })
     .catch(error => {
@@ -51,7 +54,8 @@ router.get('/profile/:id', (req, res, next) => {
             posts,
             user,
             showButton,
-            _idOther
+            _idOther,
+            userProf
           };
           res.render('user/profile', data);
         })
@@ -85,34 +89,36 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
 router.get('/friends', (req, res, next) => {
   const myId = req.user._id;
   let friends;
-  UserFriend.find({userOne: myId }
-  ).populate('userTwo')
-  .then(friendsInUserTwo=> {    
-    friends = friendsInUserTwo;
-    return UserFriend.find({userTwo: myId}).populate('userOne');
-  })
-  .then(friendsInUserOne => {
-    friends = friends.concat(friendsInUserOne);
-    const data = [];   
-    friends.map((value) => {
-      console.log(value);
-      if (Object.keys(value.userOne).length - 1 > 1) data.push({
-        email: value.userOne.email,
-        id: value.userOne._id
+  UserFriend.find({ userOne: myId })
+    .populate('userTwo')
+    .then(friendsInUserTwo => {
+      friends = friendsInUserTwo;
+      return UserFriend.find({ userTwo: myId }).populate('userOne');
+    })
+    .then(friendsInUserOne => {
+      friends = friends.concat(friendsInUserOne);
+      const data = [];
+      friends.map(value => {
+        console.log(value);
+        if (Object.keys(value.userOne).length - 1 > 1)
+          data.push({
+            email: value.userOne.email,
+            id: value.userOne._id
+          });
+        else
+          data.push({
+            email: value.userTwo.email,
+            id: value.userTwo._id
+          });
       });
-      else data.push({
-        email: value.userTwo.email,
-        id: value.userTwo._id
-      });
+      res.render('user/friends', { data });
+    })
+    //   //value.userOne === myId ? idSearch = value.userTwo : idSearch = value.userOne;
+
+    // })
+    .catch(error => {
+      next(error);
     });
-    res.render('user/friends', { data });
-  })
-  //   //value.userOne === myId ? idSearch = value.userTwo : idSearch = value.userOne; 
-    
-  // })
-  .catch(error => {
-    next(error);
-  });
 });
 
 router.get('/update', (req, res, next) => {
@@ -125,7 +131,6 @@ router.post('/update', uploadCloud.single('photo'), (req, res, next) => {
   const profilePic = req.file.secure_url;
   User.findByIdAndUpdate(req.user._id, { description, profilePic })
     .then(user => {
-
       res.redirect('/logged/social/profile');
     })
     .catch(error => {

@@ -1,5 +1,7 @@
 $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
+$backgroundColor: #f2f2f2;
+$navbarColor: #d1d1d1;
 //* {
 //  background-color: #f2f2f2;
 //}
@@ -13,10 +15,12 @@ $grey: hsla(0, 0, 75%, 0.5);
 
 body {
   padding: 0 1em;
-  margin: 0 auto;
+  margin-left: 10%;
+  margin-right: 10%;
   font-family: sans-serif;
   font-family: $font-sans;
   line-height: 2;
+  background-color: $backgroundColor;
 }
 
 a {
@@ -55,6 +59,16 @@ textarea {
   height: 300px;
 }
 
+//create form
+
+.createPost {
+  margin-bottom: 50px;
+}
+
+#labelSize {
+  font-size: 1.4em;
+}
+
 //profile css
 
 #btn-container {
@@ -68,30 +82,116 @@ textarea {
 //nav bar
 
 #nav-bar {
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 #friendtrip {
-  margin-left: 40px;
+  margin-left: 20px;
   font-size: 1.5em;
 }
 
 #navhome {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 #navcreate {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 #navutilities {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 #navprofile {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 #navsignout {
-  margin-left: 500px;
+  margin-left: 250px;
+  margin-top: 10px;
+}
+
+//search (feed)
+
+.div-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-left: 20px;
+  height: 750px;
+  width: 800px;
+}
+
+.card-deck {
+  margin: auto;
+}
+
+#searchBar {
+  width: 500px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+//background video
+header {
+  position: relative;
+  background-color: black;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center
+      center scroll;
+  }
+  header video {
+    display: none;
+  }
+}
+
+//show post
+
+#showCard {
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: 50px;
+}
+
+#deleteBtn {
+  margin-top: 5px;
 }
