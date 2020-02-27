@@ -57,11 +57,13 @@ textarea {
 }
 .user-post {
   height: 250px;
+  overflow: hidden;
 }
 
 #cardPost {
   max-height: 200px;
   height: 100%;
+  overflow: scroll;
 }
 
 //create form
