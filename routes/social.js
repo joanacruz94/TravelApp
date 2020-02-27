@@ -106,7 +106,7 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
     .catch(error => {
       console.log(error);
     });
-    res.render('utilities/main');
+  res.render('utilities/main');
 
   UserFriend.create(data)
     .then(entrance => {
@@ -121,27 +121,28 @@ router.get('/profile/:id/acceptFriend', (req, res, next) => {
   const myId = req.user._id;
   const _idOther = req.params.id;
 
-  UserFriend.findOneAndUpdate({userOne: _idOther, userTwo: myId }, { accepted : true})
-  .then(entrance => {
+  UserFriend.findOneAndUpdate({ userOne: _idOther, userTwo: myId }, { accepted: true })
+    .then(entrance => {
       res.redirect('/logged');
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       next(error);
-  });
+    });
 });
 
 router.get('/friends/:idUser', (req, res, next) => {
   const myId = req.user._id;
   const reqId = req.params.idUser;
-  let findId = 0, friends;
+  let findId = 0,
+    friends;
 
-  (myId === reqId) ? findId = myId : findId = reqId;
+  myId === reqId ? (findId = myId) : (findId = reqId);
 
-  UserFriend.find({ userOne: findId, accepted : true })
+  UserFriend.find({ userOne: findId, accepted: true })
     .populate('userTwo')
     .then(friendsInUserTwo => {
       friends = friendsInUserTwo;
-      return UserFriend.find({ userTwo: findId, accepted : true }).populate('userOne');
+      return UserFriend.find({ userTwo: findId, accepted: true }).populate('userOne');
     })
     .then(friendsInUserOne => {
       friends = friends.concat(friendsInUserOne);
@@ -151,15 +152,18 @@ router.get('/friends/:idUser', (req, res, next) => {
           data.push({
             email: value.userOne.email,
             id: value.userOne._id,
+            name: value.userOne.name,
             request: false
           });
         else
           data.push({
             email: value.userTwo.email,
             id: value.userTwo._id,
+            name: value.userTwo.name,
             request: false
           });
       });
+      console.log(data);
       res.render('user/friends', { data });
     })
     .catch(error => {
@@ -167,20 +171,18 @@ router.get('/friends/:idUser', (req, res, next) => {
     });
 });
 
-
-
 router.get('/requests', (req, res, next) => {
   const myId = req.user._id;
-  UserFriend.find({ userTwo: myId, accepted : false })
+  UserFriend.find({ userTwo: myId, accepted: false })
     .populate('userOne')
     .then(requests => {
       const data = [];
       requests.map(value => {
-          data.push({
-            email: value.userOne.email,
-            id: value.userOne._id,
-            request: true
-          });
+        data.push({
+          email: value.userOne.email,
+          id: value.userOne._id,
+          request: true
+        });
       });
       res.render('user/friends', { data });
     })
@@ -211,7 +213,7 @@ router.get('/map/:idUser', (req, res, next) => {
   const reqId = req.params.idUser;
   let findId = 0;
 
-  (myId === reqId) ? findId = myId : findId = reqId;
+  myId === reqId ? (findId = myId) : (findId = reqId);
 
   Post.find({ postedBy: findId })
     .then(posts => {
