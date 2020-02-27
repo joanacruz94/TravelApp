@@ -8,13 +8,6 @@ const projectId = 'geoproject-268614';
 const location = 'global';
 const text = 'Hello World';
 
-const nodemailer = require('nodemailer');
-
-const EMAIL = 'joanamartadacruz@gmail.com';
-const PASSWORD = 'JDamigos&';
-
-
-
 // Instantiates a client
 const translationClient = new TranslationServiceClient();
 async function translateText() {
@@ -48,32 +41,6 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 
- 
-router.get('/', (req, res, next) => {
-  const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: EMAIL,
-      pass: PASSWORD
-    }
-  });
-  
-  transporter
-    .sendMail({
-      from: `Jan20 Test <${EMAIL}>`,
-      to: EMAIL,
-      subject: 'A test 😜 email',
-      // text: 'Hello world!'
-      html: 'Hello <strong>world</strong>'
-    })
-    .then(result => {
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-    res.render('utilities/main');
-});
 
 router.get('/recognition', (req, res, next) => {
     res.render('utilities/recognition');
@@ -98,7 +65,7 @@ console.log(msg);
 sgMail.send(msg);
 
 
-    res.render('utilities/translation');
+res.render('utilities/translation');
 });
 
 router.post('/translation', (req, res, next) => {

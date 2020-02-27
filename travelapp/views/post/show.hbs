@@ -11,7 +11,7 @@
     <button id="deleteBtn" class="btn btn-outline-secondary">Delete Post</button>
     {{else}}
 </form>
-<a href="/logged/social/profile/{{ post.postedBy }}">{{ post.postedBy }}  </a>
+<a href="/logged/social/profile/{{ post.postedBy._id }}">{{ post.postedBy.name }}</a>
   </div>
   {{/if}}
 </div>

@@ -10,6 +10,9 @@ const schemaUserFriend = new mongoose.Schema({
     userTwo: { 
         type: mongoose.Schema.Types.ObjectId, ref: 'User' 
     },
+    accepted: {
+        type: Boolean
+    },
     createAt: { 
         type : Date, 
         default: Date.now 

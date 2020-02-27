@@ -6,7 +6,21 @@ const Post = require('./../models/post');
 const User = require('./../models/user');
 const UserFriend = require('./../models/userFriend');
 const uploadCloud = require('../cloudinary-config.js');
+const nodemailer = require('nodemailer');
+const EMAIL = 'joanamartadacruz@gmail.com';
+const PASSWORD = 'JDamigos&';
 
+/********* NODEMAILER **********/
+//TODO - put in a different file
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: EMAIL,
+    pass: PASSWORD
+  }
+});
+
+/*********** ROUTES ***********/
 router.get('/profile', (req, res, next) => {
   const user = req.user;
   const showButton = false;
@@ -74,8 +88,25 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
 
   const data = {
     userOne,
-    userTwo
+    userTwo,
+    accepted: false
   };
+
+  transporter
+    .sendMail({
+      from: `App <${EMAIL}>`,
+      to: EMAIL,
+      subject: 'I would love you to be friends with you',
+      // text: 'Hello world!'
+      html: 'Hello <strong>world</strong>'
+    })
+    .then(result => {
+      console.log(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    res.render('utilities/main');
 
   UserFriend.create(data)
     .then(entrance => {
@@ -86,14 +117,31 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
     });
 });
 
-router.get('/friends', (req, res, next) => {
+router.get('/profile/:id/acceptFriend', (req, res, next) => {
   const myId = req.user._id;
-  let friends;
-  UserFriend.find({ userOne: myId })
+  const _idOther = req.params.id;
+
+  UserFriend.findOneAndUpdate({userOne: _idOther, userTwo: myId }, { accepted : true})
+  .then(entrance => {
+      res.redirect('/logged');
+  })
+  .catch(error => {
+      next(error);
+  });
+});
+
+router.get('/friends/:idUser', (req, res, next) => {
+  const myId = req.user._id;
+  const reqId = req.params.idUser;
+  let findId = 0, friends;
+
+  (myId === reqId) ? findId = myId : findId = reqId;
+
+  UserFriend.find({ userOne: findId, accepted : true })
     .populate('userTwo')
     .then(friendsInUserTwo => {
       friends = friendsInUserTwo;
-      return UserFriend.find({ userTwo: myId }).populate('userOne');
+      return UserFriend.find({ userTwo: findId, accepted : true }).populate('userOne');
     })
     .then(friendsInUserOne => {
       friends = friends.concat(friendsInUserOne);
@@ -102,19 +150,40 @@ router.get('/friends', (req, res, next) => {
         if (Object.keys(value.userOne).length - 1 > 1)
           data.push({
             email: value.userOne.email,
-            id: value.userOne._id
+            id: value.userOne._id,
+            request: false
           });
         else
           data.push({
             email: value.userTwo.email,
-            id: value.userTwo._id
+            id: value.userTwo._id,
+            request: false
           });
       });
       res.render('user/friends', { data });
     })
-    //   //value.userOne === myId ? idSearch = value.userTwo : idSearch = value.userOne;
+    .catch(error => {
+      next(error);
+    });
+});
 
-    // })
+
+
+router.get('/requests', (req, res, next) => {
+  const myId = req.user._id;
+  UserFriend.find({ userTwo: myId, accepted : false })
+    .populate('userOne')
+    .then(requests => {
+      const data = [];
+      requests.map(value => {
+          data.push({
+            email: value.userOne.email,
+            id: value.userOne._id,
+            request: true
+          });
+      });
+      res.render('user/friends', { data });
+    })
     .catch(error => {
       next(error);
     });
@@ -137,10 +206,14 @@ router.post('/update', uploadCloud.single('photo'), (req, res, next) => {
     });
 });
 
-router.get('/map', (req, res, next) => {
-  const user = req.user;
+router.get('/map/:idUser', (req, res, next) => {
+  const myId = req.user._id;
+  const reqId = req.params.idUser;
+  let findId = 0;
 
-  Post.find({ postedBy: user._id })
+  (myId === reqId) ? findId = myId : findId = reqId;
+
+  Post.find({ postedBy: findId })
     .then(posts => {
       const data = { posts };
       res.render('user/map', data);
