@@ -20,6 +20,10 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
   const countrie = req.body.countrie;
   const city = req.body.city;
 
+  console.log(req.body)
+  console.log(req.body.city)
+  console.log(req.body.countrie)
+
   Post.create({
     title: title,
     content: description,
