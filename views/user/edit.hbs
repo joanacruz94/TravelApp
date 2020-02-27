@@ -1,8 +1,20 @@
-<h1>Edit info user</h1>
+<h1>Edit your Profile</h1>
 
-<form action="" method="POST" enctype="multipart/form-data">
-  <label for="input-description">Discription</label>
-  <input type="text-area" id="input-description" name="description" value={{ user.description }}/>
-  <input type="file" name="photo" value={{ user.profilePic }}>
-  <input type="submit" value="save">
+
+
+<form method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="input-description"></label>
+    <input  type="text-area" class="form-control"  id="input-description" placeholder="Chage your description" value={{ user.description }}>
+
+    <div class="upload-btn-wrapper">
+      <p>Change your profile foto:</p>
+  <button class="btn btn-outline-secondary">Upload a file</button>
+  <input type="file" name="photo" value={{ user.profilePic }}/>
+</div>
+  <div>
+    <input class="btn btn-outline-secondary" type="submit" value="Upload" id="upload-button">
+  </div>
+  </div>
 </form>
+
