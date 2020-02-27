@@ -256,7 +256,8 @@ form .error {
 
 .showMap {
   display: flex;
-  margin: auto; }
+  margin: auto;
+  margin-bottom: 40px; }
 
 .textIndex {
   font-size: 1.5em; }
