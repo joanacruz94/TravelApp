@@ -29,8 +29,7 @@ app.use(
   sassMiddleware({
     src: join(__dirname, 'public'),
     dest: join(__dirname, 'public'),
-    outputStyle:
-      process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
+    outputStyle: process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
     force: process.env.NODE_ENV === 'development',
     sourceMap: true
   })
@@ -47,8 +46,7 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 24 * 15,
       sameSite: 'lax',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production'
+      httpOnly: true
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
