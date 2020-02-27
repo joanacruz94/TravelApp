@@ -1,7 +1,7 @@
 
 <div id="main-container" class="d-flex flex-row bd-highlight mb-3">
   <div class="p-2 bd-highlight">
-      <p>{{ user.name }}</p>  
+      <p><strong>{{ user.name }}</strong></p>  
       <img class="profile-foto rounded-circle" src={{ user.profilePic }}>  
   </div>
   <div id="btn-container" class="p-2 bd-highlight">
@@ -19,9 +19,9 @@
 <div class="row row-cols-1 row-cols-md-3">
   {{#each posts}} 
   <div class="col mb-4">
-    <div class="card">
+    <div class="card profileCard">
       <img src={{ image }} class="card-img-top user-post" alt="...">
-      <div class="card-body">
+      <div id="cardPost" class="card-body">
         <h5 class="card-title">{{ title }}</h5>
         <p class="card-text">{{ content }}</p>
         <a href="/logged/post/{{ _id }}" class="btn btn-outline-secondary">Go to Post</a>

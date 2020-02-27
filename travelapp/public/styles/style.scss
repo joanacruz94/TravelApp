@@ -59,6 +59,11 @@ textarea {
   height: 250px;
 }
 
+#cardPost {
+  max-height: 200px;
+  height: 100%;
+}
+
 //create form
 
 .createPost {
@@ -294,8 +299,3 @@ form .error {
 }
 
 //MAP
-
-.showMap {
-  color: gray('100');
-  background-color: theme-color('dark');
-}

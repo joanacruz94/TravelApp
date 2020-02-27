@@ -41,6 +41,10 @@ textarea {
 .user-post {
   height: 250px; }
 
+#cardPost {
+  max-height: 200px;
+  height: 100%; }
+
 .createPost {
   margin-bottom: 50px; }
 
@@ -223,9 +227,5 @@ a {
 
 form .error {
   color: #ff0000; }
-
-.showMap {
-  color: gray("100");
-  background-color: theme-color("dark"); }
 
 /*# sourceMappingURL=style.css.map */
