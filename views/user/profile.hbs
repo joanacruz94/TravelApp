@@ -12,7 +12,10 @@
         {{else}}
           <a href="/logged/social/map/{{ _idOther }}"><button class="btn btn-outline-secondary">Map</button></a>
           <a href="/logged/social/friends/{{ _idOther }}"><button class="btn btn-outline-secondary">Friends</button></a>
-      {{/if}}        
+      {{/if}}       
+      {{#if showButton}}
+        <a href="/logged/social/profile/{{ _idOther }}/addFriend"><button class="btn btn-outline-secondary">Add Friend</button></a>
+      {{/if}}       
   </div>
   <div id="description-container" class="p-2 bd-highlight">
       <p id="description" class="align-middle">{{ user.description }}</p>
@@ -33,11 +36,6 @@
   </div>
   {{/each}}
 </div>
-
-{{#if showButton}}
-    <a href="/logged/social/profile/{{ _idOther }}/addFriend">Add Friend</a>
-{{/if}}
-
 <script>
 
 Handlebars.registerHelper('dotdotdot', function(str) {

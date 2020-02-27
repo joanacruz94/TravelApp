@@ -12,19 +12,20 @@ router.get('/', (req, res, next) => {
 
 router.get('/logged', routeGuard, (req, res, next) => {
   const search = req.query.search;
-  console.log(search);
+
   let searchO = {};
   const userName = req.user.name;
-  if (search) searchO = { $or: [{ 'countrie' : search },{ 'city' : search }]};
+  if (search) searchO = { $or: [{ countrie: search }, { city: search }] };
   Post.find(searchO)
-  .then((posts) =>{
-    const data = { posts, userName, firstTime };
-    res.render('search', data);
-    firstTime = false;
-  })
-  .catch((error) => {
-    next(error);
-  });
+    .sort({ creationDate: 1 })
+    .then(posts => {
+      const data = { posts, userName, firstTime };
+      res.render('search', data);
+      firstTime = false;
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 module.exports = router;

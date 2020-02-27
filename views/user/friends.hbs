@@ -1,6 +1,10 @@
+<ul class="list-group">
 {{#each data}}
-    <p>{{ email }}</p>
-    {{#if request}}
-        <a href="/logged/social/profile/{{ id }}/acceptFriend">Accept</a>
-    {{/if}}
+    <li class="list-group-item list-group-item-warning" margin="16px 0px">
+        <a href="/logged/social/profile/{{ id }}">{{ name }}</a>
+    </li>
+        {{#if request}}
+            <a href="/logged/social/profile/{{ id }}/acceptFriend"><button class="btn btn-outline-secondary">Accept</button></a>
+        {{/if}}
 {{/each}}
+</ul>
