@@ -83,7 +83,7 @@ passport.use(new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://localhost:3000/authentication/google-callback"
+    callbackURL: "https://friends-trip-app.herokuapp.com/authentication/google-callback"
   },
   (accessToken, refreshToken, profile, callback) => {
     User.findOne({
