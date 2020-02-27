@@ -1,10 +1,11 @@
 *, *:before, *:after {
   box-sizing: border-box; }
 
+.body {
+  padding: 0 7.5%;
+  padding-top: 50px; }
+
 body {
-  padding: 0 1em;
-  margin-left: 10%;
-  margin-right: 10%;
   font-family: sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 2;
@@ -74,7 +75,8 @@ textarea {
   font-size: 1.2em; }
 
 #nav-bar {
-  font-size: 1.1em; }
+  font-size: 1.1em;
+  padding: 0 7.5%; }
 
 #friendtrip {
   margin-left: 20px;
@@ -93,7 +95,8 @@ textarea {
   margin-left: 30px; }
 
 #navsignout {
-  margin-left: 250px;
+  right: 7.5%;
+  position: absolute;
   margin-top: 10px; }
 
 #signIn {
@@ -113,9 +116,25 @@ textarea {
   margin: auto; }
 
 #searchBar {
-  width: 500px;
+  display: flex;
+  justify-content: center;
   margin: auto;
   margin-top: 50px; }
+  #searchBar input {
+    max-width: 400px; }
+  #searchBar img {
+    width: 40px;
+    height: 100%;
+    margin: 0 20px; }
+
+.translatePage img {
+  width: 250px;
+  margin: 25% auto 0;
+  display: block; }
+
+.translatePage input {
+  display: block;
+  margin: 20px auto; }
 
 header {
   position: relative;
