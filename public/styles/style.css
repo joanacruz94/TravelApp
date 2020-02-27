@@ -39,11 +39,13 @@ textarea {
   height: 220px; }
 
 .user-post {
-  height: 250px; }
+  height: 250px;
+  overflow: hidden; }
 
 #cardPost {
   max-height: 200px;
-  height: 100%; }
+  height: 100%;
+  overflow: scroll; }
 
 .createPost {
   margin-bottom: 50px; }
@@ -69,7 +71,12 @@ textarea {
   margin-top: 200px; }
 
 #description {
-  font-size: 1.5em; }
+  font-size: 1.2em;
+  margin-top: 30px; }
+
+#userName {
+  margin-left: 80px;
+  font-size: 1.2em; }
 
 #nav-bar {
   font-size: 1.1em; }
@@ -227,5 +234,12 @@ a {
 
 form .error {
   color: #ff0000; }
+
+.showMap {
+  display: flex;
+  margin: auto; }
+
+.textIndex {
+  font-size: 1.5em; }
 
 /*# sourceMappingURL=style.css.map */
