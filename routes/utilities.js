@@ -7,7 +7,6 @@ const translate = new Translate();
 const target = 'en';
 let translated = '';
 
-
 async function translateText(text) {
   let [translations] = await translate.translate(text, target);
   translations = Array.isArray(translations) ? translations : [translations];
@@ -20,7 +19,6 @@ async function translateText(text) {
 router.get('/', (req, res, next) => {
   res.render('utilities/main');
 });
-
 
 router.get('/translation', (req, res, next) => {
   res.render('utilities/translation');
