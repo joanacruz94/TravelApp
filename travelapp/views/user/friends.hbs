@@ -1,6 +1,6 @@
-<h1>Page showing user friends</h1>
-
-
 {{#each data}}
     <p>{{ email }}</p>
+    {{#if request}}
+        <a href="/logged/social/profile/{{ id }}/acceptFriend">Accept</a>
+    {{/if}}
 {{/each}}

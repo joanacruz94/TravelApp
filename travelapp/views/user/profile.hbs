@@ -6,10 +6,14 @@
   </div>
   <div id="btn-container" class="p-2 bd-highlight">
       {{#if userProf}}
-      <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>
+          <a href="/logged/social/update"><button class="btn btn-outline-secondary">Settings</button></a>
+          <a href="/logged/social/requests"><button class="btn btn-outline-secondary">Requests</button></a>
+          <a href="/logged/social/map/{{ user._id }}"><button class="btn btn-outline-secondary">Map</button></a>
+          <a href="/logged/social/friends/{{ user._id }}"><button class="btn btn-outline-secondary">Friends</button></a>
+        {{else}}
+          <a href="/logged/social/map/{{ _idOther }}"><button class="btn btn-outline-secondary">Map</button></a>
+          <a href="/logged/social/friends/{{ _idOther }}"><button class="btn btn-outline-secondary">Friends</button></a>
       {{/if}}        
-      <a href="/logged/social/map"><button class="btn btn-outline-secondary">Map</button></a>
-      <a href="/logged/social/friends"><button class="btn btn-outline-secondary">Friends</button></a>  
   </div>
   <div id="description-container" class="p-2 bd-highlight">
       <p id="description" class="align-middle"> <strong>Profile Description:</strong> <br>{{ user.description }}</p>
