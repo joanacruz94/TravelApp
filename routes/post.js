@@ -20,10 +20,7 @@ router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
   const countrie = req.body.countrie;
   const city = req.body.city;
 
-  console.log(req.body)
-  console.log(req.body.city)
-  console.log(req.body.countrie)
-
+  
   Post.create({
     title: title,
     content: description,
@@ -70,8 +67,9 @@ router.get('/:id', (req, res, next) => {
   Post.findById(idPost)
     .populate('postedBy')
     .then(post => {
-      console.log(post);
       const myPost = req.user._id.toString() === post.postedBy.toString();
+
+      console.log(myPost)
       const data = { post, myPost };
       res.render('post/show', data);
     })
