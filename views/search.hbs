@@ -2,13 +2,10 @@
   <i class="fas fa-search" aria-hidden="true"></i>
   <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
     aria-label="Search" name="search" id="speech-text">
-  <img onclick="startDictation()" witdh="30" height="30" src="/public/images/mic-image.jpeg"/>
+  <img onclick="startDictation()" witdh="30" height="30" src="./../images/voiceIcon.png"/>
   <button class="btn btn-outline-secondary">Search</button>
 </form>
-
 <input id="hidden" value={{ userName }}></input>
-<input id="hidden" value={{ firstTime }}></input>
-
 {{#each posts}}
 <div class="card-deck div-container">
   <div id="feedCard" class="card">
@@ -53,13 +50,6 @@
         }
     }
 </script>
-
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=qNPkUHT3"></script>
-<script>
-    const nameUser = document.getElementById('hidden').value;
-    responsiveVoice.speak(`Hello ${nameUser}! Welcome to friends trip, have a nice experience`); 
-</script>
-
 
     
     

@@ -1,27 +1,22 @@
 <form action="/logged/utilities/translation" method="POST">
-    <textarea id="speech-text" name="text" cols="100" rows="10"></textarea>
+    <textarea id="speech-text" name="text" cols="1" rows="1" style="display:none;"></textarea>
+    <img onclick="startDictation()" witdh="200" height="200" src="https://assets.dryicons.com/uploads/icon/svg/6122/bef13daa-e9a2-4855-9552-5a274a59f119.svg"/>
     <input id="translate" type="submit" value="Translate"/>
 </form>
-
-<input id="translates" type="button" value="hhhhh"/>
-
-
-<img onclick="startDictation()" witdh="150" height="150" src="https://assets.dryicons.com/uploads/icon/svg/6122/bef13daa-e9a2-4855-9552-5a274a59f119.svg"/>
-<textarea id="translated" cols="100" rows="10">{{ translated }}</textarea>
-
+<textarea id="translated" cols="100" rows="10" style="display:none;">{{ translated }}</textarea>
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=qNPkUHT3"></script>
 <script>
     const $translate = document.getElementById('translates');
-    $translate.addEventListener('click', () => { 
+    {{#if speak}}
         const text = document.getElementById('translated').value;
-        console.log(text);
-        responsiveVoice.speak(text); 
-    });
+        responsiveVoice.speak(text);    
+    {{/if}}
+    
 </script>
 
 <script>
 
-    let lang = "en-GB";
+    let lang = "pt-PT";
     function startDictation() {
 
         if (window.hasOwnProperty('webkitSpeechRecognition')) {
