@@ -1,3 +1,4 @@
+  
 <form action="/logged/utilities/translation" method="POST" class="translatePage">
     <textarea id="speech-text" name="text" cols="1" rows="1" style="display:none;"></textarea>
     <img onclick="startDictation()" src="https://img.icons8.com/color/96/000000/medium-volume.png"/>
@@ -15,33 +16,23 @@
 </script>
 
 <script>
-
     let lang = "pt-PT";
     function startDictation() {
-
         if (window.hasOwnProperty('webkitSpeechRecognition')) {
-
         var recognition = new webkitSpeechRecognition();
-
         recognition.continuous = false;
         recognition.interimResults = false;
     
         recognition.lang = lang;
         recognition.start();
-
         recognition.onresult = function(e) {
             const $speechT = document.getElementById("speech-text");
             $speechT.value = e.results[0][0].transcript;
-
             recognition.stop();
         };
-
         recognition.onerror = function(e) {
             recognition.stop();
         }
-
         }
     }
-
-
 </script>

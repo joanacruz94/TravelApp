@@ -16,10 +16,6 @@ async function translateText(text) {
   });
 }
 
-router.get('/', (req, res, next) => {
-  res.render('utilities/main');
-});
-
 router.get('/translation', (req, res, next) => {
   res.render('utilities/translation');
 });
