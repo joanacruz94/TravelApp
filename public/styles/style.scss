@@ -105,6 +105,12 @@ textarea {
 
 #description {
   font-size: 1.2em;
+  margin-top: 30px;
+}
+
+#userName {
+  margin-left: 80px;
+  font-size: 1.2em;
 }
 
 //nav bar
@@ -328,3 +334,14 @@ form .error {
 }
 
 //MAP
+
+.showMap {
+  display: flex;
+  margin: auto;
+}
+
+//index
+
+.textIndex {
+  font-size: 1.5em;
+}
