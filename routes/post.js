@@ -67,9 +67,7 @@ router.get('/:id', (req, res, next) => {
   Post.findById(idPost)
     .populate('postedBy')
     .then(post => {
-      const myPost = req.user._id.toString() === post.postedBy.toString();
-
-      console.log(myPost)
+      const myPost = req.user._id.toString() === post.postedBy._id.toString();
       const data = { post, myPost };
       res.render('post/show', data);
     })
