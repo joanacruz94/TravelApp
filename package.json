@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-ip": "^1.0.3",
     "express-session": "^1.17.0",
+    "geolocator": "^2.1.5",
     "google": "^2.1.0",
     "google-translate-api": "^2.3.0",
     "gtts.js": "^1.0.1",
