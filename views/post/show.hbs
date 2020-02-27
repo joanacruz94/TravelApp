@@ -7,11 +7,11 @@
     <p class="card-text">Price range: {{ post.priceRange }}</p>
     <a href="/logged/social/profile" class="btn btn-outline-secondary">Go back</a>
     {{#if myPost}}
-    <form action="/logged/post/{{ post._id }}/delete" method="POST">
-    <button id="deleteBtn" class="btn btn-outline-secondary">Delete Post</button>
+      <form action="/logged/post/{{ post._id }}/delete" method="POST">
+      <button id="deleteBtn" class="btn btn-outline-secondary">Delete Post</button>
     {{else}}
-</form>
-<a href="/logged/social/profile/{{ post.postedBy._id }}">{{ post.postedBy.name }}</a>
-  </div>
-  {{/if}}
+      </form>
+      <a href="/logged/social/profile/{{ post.postedBy._id }}">{{ post.postedBy.name }}</a>
+      </div>
+    {{/if}}
 </div>
