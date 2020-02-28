@@ -1,7 +1,9 @@
 <div id="friendList" class="list-group">
-    <p id="friendId" href="#" class="list-group-item">Friend Request</p>
+    <p id="friendId" class="list-group-item">Friend Request</p>
      {{#each data}}
-    <a href="/logged/social/profile/{{ id }}" class="list-group-item list-group-item-action list-group-item-light">{{ name }}</a>
+     <div id="requestFriend">
+        <a href="/logged/social/profile/{{ id }}" class="list-group-item list-group-item-action list-group-item-light">{{ name }}</a>
+     </div>
 
         {{#if request}}
             <a href="/logged/social/profile/{{ id }}/acceptFriend"><button class="btn btn-outline-secondary">Accept</button></a>
