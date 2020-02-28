@@ -109,7 +109,7 @@ textarea {
   margin-right: 30px; }
 
 #searchCard {
-  margin-bottom: 200px; }
+  margin-bottom: 20px; }
 
 .div-container {
   display: flex;
@@ -265,5 +265,13 @@ form .error {
 
 .textIndex {
   font-size: 1.5em; }
+
+#friendList {
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center; }
+
+#friendId {
+  background-color: #d1d1d1; }
 
 /*# sourceMappingURL=style.css.map */

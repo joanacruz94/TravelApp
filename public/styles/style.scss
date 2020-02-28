@@ -156,7 +156,7 @@ textarea {
 //search (feed)
 
 #searchCard {
-  margin-bottom: 200px;
+  margin-bottom: 20px;
 }
 
 .div-container {
@@ -351,4 +351,16 @@ form .error {
 
 .textIndex {
   font-size: 1.5em;
+}
+
+//FRIENDS
+
+#friendList {
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+}
+
+#friendId {
+  background-color: $navbarColor;
 }
