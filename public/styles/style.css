@@ -76,7 +76,8 @@ textarea {
 
 #description {
   font-size: 1.2em;
-  margin-top: 30px; }
+  margin-top: 30px;
+  margin-left: 25px; }
 
 #userName {
   margin-left: 80px;
