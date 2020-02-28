@@ -17,8 +17,9 @@ router.get('/logged', routeGuard, (req, res, next) => {
   const userName = req.user.name;
   if (search) searchO = { $or: [{ countrie: search }, { city: search }] };
   Post.find(searchO)
-    .sort({ creationDate: 1 })
+    .sort({ 'timestamps.createAt' : -1 })
     .then(posts => {
+      console.log(posts);
       const data = { posts, userName, firstTime };
       res.render('search', data);
       firstTime = false;
