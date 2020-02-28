@@ -1,10 +1,13 @@
-<ul class="list-group">
-{{#each data}}
-    <li class="list-group-item list-group-item-warning" margin="16px 0px">
-        <a href="/logged/social/profile/{{ id }}">{{ name }}</a>
-    </li>
+<div id="friendList" class="list-group">
+    <p id="friendId" class="list-group-item">Friend Request</p>
+     {{#each data}}
+     <div id="requestFriend">
+        <a type="text" href="/logged/social/profile/{{ id }}" class="list-group-item list-group-item-action list-group-item-light">{{ name }}</a>
+     </div>
+
         {{#if request}}
             <a href="/logged/social/profile/{{ id }}/acceptFriend"><button class="btn btn-outline-secondary">Accept</button></a>
         {{/if}}
 {{/each}}
-</ul>
+</div>
+ 

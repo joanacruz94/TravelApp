@@ -181,7 +181,8 @@ router.get('/requests', (req, res, next) => {
         data.push({
           email: value.userOne.email,
           id: value.userOne._id,
-          request: true
+          request: true,
+          name: value.userOne.name
         });
       });
       res.render('user/friends', { data });
