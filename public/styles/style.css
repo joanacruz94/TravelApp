@@ -45,7 +45,8 @@ textarea {
 #cardPost {
   max-height: 200px;
   height: 100%;
-  overflow: scroll; }
+  overflow: scroll;
+  margin-bottom: 40px; }
 
 #btnCreate {
   margin-top: 15px; }
@@ -109,7 +110,7 @@ textarea {
   margin-right: 30px; }
 
 #searchCard {
-  margin-bottom: 20px; }
+  margin-bottom: 50px; }
 
 .div-container {
   display: flex;

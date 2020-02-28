@@ -7,10 +7,10 @@
 </form>
 <input id="hidden" value={{ userName }}></input>
 {{#each posts}}
-<div class="card-deck div-container">
+<div id="searchCard" class="card-deck div-container">
   <div id="feedCard" class="card">
     <img id="postImg" class="card-img-top post-foto" src={{ image }} alt="Card image cap">
-    <div class="card-body">
+    <div id="cardPost" class="card-body">
     <a  class="card-title" href="/logged/post/{{ _id }}">{{ title }}</a>
     <p class="card-text">Description: {{ content }}</p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
