@@ -106,7 +106,6 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
     .catch(error => {
       console.log(error);
     });
-  res.render('utilities/main');
 
   UserFriend.create(data)
     .then(entrance => {
