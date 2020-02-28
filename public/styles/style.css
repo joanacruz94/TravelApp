@@ -110,7 +110,8 @@ textarea {
   margin-right: 30px; }
 
 #searchCard {
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  margin-top: 20px; }
 
 .div-container {
   display: flex;
