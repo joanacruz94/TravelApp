@@ -1,4 +1,4 @@
-$font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-sans: 'Ubuntu', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
 $backgroundColor: #f2f2f2;
 $navbarColor: #d1d1d1;
@@ -19,7 +19,6 @@ $navbarColor: #d1d1d1;
 }
 
 body {
-  font-family: sans-serif;
   font-family: $font-sans;
   line-height: 2;
   background-color: $backgroundColor;
@@ -69,6 +68,10 @@ textarea {
 }
 
 //create form
+
+#btnCreate {
+  margin-top: 15px;
+}
 
 .createPost {
   margin-bottom: 50px;
@@ -151,6 +154,10 @@ textarea {
 }
 
 //search (feed)
+
+#searchCard {
+  margin-bottom: 200px;
+}
 
 .div-container {
   display: flex;
