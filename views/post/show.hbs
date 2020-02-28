@@ -5,13 +5,13 @@
     <p class="card-text">{{ post.content }}</p>
     <p class="card-text">Type: {{ post.typePost }}</p>
     <p class="card-text">Price range: {{ post.priceRange }}</p>
-    <a href="/logged/social/profile" class="btn btn-outline-secondary">Go back</a>
     {{#if myPost}}
       <form action="/logged/post/{{ post._id }}/delete" method="POST">
       <button id="deleteBtn" class="btn btn-outline-secondary">Delete Post</button>
-    {{else}}
       </form>
-      <a href="/logged/social/profile/{{ post.postedBy._id }}">{{ post.postedBy.name }}</a>
+    {{else}}
+      <a href="/logged/social/profile/{{ post.postedBy._id }}">Posted by: {{ post.postedBy.name }}</a>
       </div>
     {{/if}}
+     <a href="/logged/social/profile" class="btn btn-outline-secondary">Go back</a>
 </div>
