@@ -4,7 +4,7 @@ const { Router } = require('express');
 const router = new Router();
 const Post = require('./../models/post');
 const User = require('./../models/user');
-const uploadCloud = require('../cloudinary-config.js');
+const uploadCloud = require('./../config/cloudinary-config.js');
 
 router.get('/create', (req, res, next) => {
   res.render('post/create');
