@@ -7,7 +7,7 @@ const schemaPost = new mongoose.Schema({
     type: String,
     trim: true
   },
-  content: {
+  description: {
     type: String,
     required: true
   },
@@ -47,11 +47,11 @@ const schemaPost = new mongoose.Schema({
     type: String,
     required: true
   },
-  typePost: {
+  type: {
     type: String,
     enum: ['Restaurant', 'Hotel', 'Bar', 'Museum', 'Landscape', 'Beach', 'City', 'Other']
   },
-  priceRange: {
+  price: {
     type: String,
     enum: ['Cheap', 'Medium', 'Expensive']
   }

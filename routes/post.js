@@ -11,25 +11,17 @@ router.get('/create', (req, res, next) => {
 });
 
 router.post('/create', uploadCloud.single('photo'), (req, res, next) => {
-  const title = req.body.title;
-  const description = req.body.description;
-  const type = req.body.type;
-  const price = req.body.priceRange;
-  const lat = req.body.lat;
-  const lng = req.body.lng;
-  const countrie = req.body.countrie;
-  const city = req.body.city;
-
+  const { title, description, type, lat, lng, countrie, city, price} = req.body;
   
   Post.create({
-    title: title,
-    content: description,
+    title,
+    description,
     image: req.file.secure_url,
-    typePost: type,
-    priceRange: price,
+    type,
+    price,
     postedBy: req.user._id,
-    countrie: countrie,
-    city: city,
+    countrie,
+    city,
     location: {
       coordinates: [lat, lng]
     }
