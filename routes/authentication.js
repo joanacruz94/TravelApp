@@ -3,7 +3,7 @@
 const { Router } = require('express');
 const passport = require('passport');
 const router = new Router();
-const uploadCloud = require('../cloudinary-config.js');
+const uploadCloud = require('./../config/cloudinary-config.js');
 
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');

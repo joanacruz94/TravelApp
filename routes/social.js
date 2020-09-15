@@ -5,18 +5,17 @@ const router = new Router();
 const Post = require('./../models/post');
 const User = require('./../models/user');
 const UserFriend = require('./../models/userFriend');
-const uploadCloud = require('../cloudinary-config.js');
+const uploadCloud = require('./../config/cloudinary-config.js');
 const nodemailer = require('nodemailer');
-const EMAIL = 'joanamartadacruz@gmail.com';
-const PASSWORD = 'JDamigos&';
 
 /********* NODEMAILER **********/
 //TODO - put in a different file
+//CREATE OUR EMAUL
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: EMAIL,
-    pass: PASSWORD
+    user: "merda",
+    pass: "merda"
   }
 });
 
@@ -106,7 +105,6 @@ router.get('/profile/:id/addFriend', (req, res, next) => {
     .catch(error => {
       console.log(error);
     });
-  res.render('utilities/main');
 
   UserFriend.create(data)
     .then(entrance => {
